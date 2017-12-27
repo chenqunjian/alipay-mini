@@ -1,0 +1,73 @@
+
+page {
+  background-color: #fff;
+}
+
+.card-image{
+  position: relative;
+}
+
+.card-image image{
+  width: 100%;
+  height: 100%;
+}
+
+.card-number{
+  position: absolute;
+  top:20rpx;
+  left: 15rpx;
+  color: #ffffff;
+  font-size: 40rpx;
+}
+
+.title{
+  margin: 30rpx 0 10rpx;
+  font-size: 30rpx;
+}
+
+.pay{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.pay-button{
+  border: 2rpx solid #108EE9;
+  border-radius: 10rpx;
+  width: 28%;
+  /* height: 100rpx; */
+  margin: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pay-type{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx 0;
+  /* color: #108EE9; */
+}
+
+.money{
+  margin-bottom: 20rpx;
+  font-size: 34rpx;
+}
+
+.checked{
+  background-color: #108ee9;
+}
+
+.uncheck{
+  background-color: #ffffff;
+}
+
+.footer{
+  position: absolute;
+  bottom: 60rpx;
+  left: 45%;
+  font-size: 34rpx;
+
+}

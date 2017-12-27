@@ -1,0 +1,52 @@
+
+@import "../../component/logo/logo.acss";
+
+page {
+  background-color: #fff;
+}
+
+.index{
+  padding: 10rpx;
+}
+
+.introduce{
+  padding: 20rpx;
+  font-size: 28rpx;
+  text-indent: 56rpx;
+}
+
+.register{
+  width: 80%;
+  margin: 0 auto 20rpx;
+}
+
+.agreement{
+  text-align: center;
+  margin-top: 10rpx;
+  color: #dcdcdc;
+}
+
+.agreement text{
+  color: #108ee9;
+}
+
+.slogan{
+  margin-top: 90rpx;
+  text-align: center;
+  font-size: 50rpx;
+}
+
+.slogan-content{
+  text-align: center;
+  color: #dcdcdc;
+  margin-top: 20rpx;
+}
+
+.footer{
+  /* text-align: center; */
+  color: #108ee9;
+  position: absolute;
+  bottom: 20rpx;
+  left: 30%;
+  display: flex;
+}

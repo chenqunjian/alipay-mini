@@ -1,0 +1,18 @@
+<view>
+  <view a:for="{{recordList}}" a:for-item="item" a:key="{{item.month}}">
+    <view class="month">{{item.month}}月</view>
+    <view a:for="{{item.recordInfo}}" a:for-item="info" class="record">
+      <view class="record-info">
+        <view class="row line">
+          <text>西安-{{info.line}}路</text>
+          <text>-{{info.money}}</text>
+        </view>
+        <view class="row date">
+          <text>{{info.date}}</text>
+          <text>电子公交卡</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>

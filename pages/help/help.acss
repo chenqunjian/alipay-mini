@@ -1,0 +1,20 @@
+
+.block{
+    margin: 30rpx auto 0;
+    width: 90%;
+}
+
+.question{
+    color: #333333;
+    font-size: 34rpx;
+    font-weight: 700;
+}
+
+.answer{
+    margin-top: 10rpx;
+    line-height: 40rpx; 
+}
+
+.answer-word{
+    color: #63bc56;
+}

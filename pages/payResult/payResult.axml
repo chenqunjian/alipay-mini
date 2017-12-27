@@ -1,0 +1,11 @@
+<view class="page">
+  <view class="logo">
+    <image src="https://t.alipayobjects.com/images/rmsweb/T1B8lgXi4iXXXXXXXX.png" mode="aspectFit" />
+  </view>
+  <view class="status">
+    充值成功
+  </view>
+  <view class="money">
+    {{money}}元
+  </view>
+</view>

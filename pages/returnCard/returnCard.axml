@@ -1,0 +1,22 @@
+<view class="page">
+  <view>
+    <image src="/image/card_close_time.jpg" mode="aspectFit" />
+  </view>
+  <view class="return-title">
+    退卡申请已提交
+  </view>
+  <view class="return-info">
+    我们将在7个工作日内审核您的申请
+  </view>
+  <view class="return-info">
+    申请成功后卡内余额将退回您的支付宝账户
+  </view>
+  <!-- <view class="submit"> 
+    <view class="text">
+      立即充值
+    </view>
+    <view class="right">
+      <image class="widget__arrow" src="/image/arrowright.png" mode="aspectFit"/>
+    </view>
+  </view> -->
+</view>

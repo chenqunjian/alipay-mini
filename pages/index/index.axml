@@ -1,0 +1,31 @@
+<import src="../../component/logo/logo.axml" />
+<template is="logo"/>
+
+<view>
+  <view class="card-number">
+    <image src="/image/card_no_icon.png" mode="aspectFit" />
+    <text>卡号 {{cardNo}}</text>
+  </view>
+  <view class="menu">
+    <view class="menu-item" onTap="account">
+      <image src="/image/balance_icon.png" mode="aspectFit" />
+      <view>卡片余额</view>
+    </view>
+    <view class="menu-item" onTap="pay">
+      <image src="/image/rechargeAuto_icon.png" mode="aspectFit" />
+      <view>卡片充值</view>
+    </view>
+    <view class="menu-item" onTap="busRecord">
+      <image src="/image/trafficLog_icon.png" mode="aspectFit" />
+      <view>乘车记录</view>
+    </view>
+    <view class="menu-item" onTap="returnCard">
+      <image src="/image/cardClose_icon.png" mode="aspectFit" />
+      <view>退卡申请</view>
+    </view>
+  </view>
+  <view class="use">
+    <button type="primary" onTap="use" >立即使用</button>
+  </view>
+
+</view>

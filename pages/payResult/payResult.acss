@@ -1,0 +1,25 @@
+.page{
+    background-color: #ffffff;
+}
+
+.logo{
+    margin: 40rpx auto;
+    width: 200rpx;
+    height: 200rpx;
+}
+
+.logo image{
+    width: 100%;
+    height: 100%;
+}
+
+.status{
+    color: #2c83e8;
+    text-align: center;
+    font-size: 40rpx;
+    margin: 30rpx auto;
+}
+
+.money{
+    text-align: center;
+}

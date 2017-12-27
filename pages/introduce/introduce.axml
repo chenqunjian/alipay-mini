@@ -1,0 +1,32 @@
+<!-- 介绍 -->
+<import src="../../component/logo/logo.axml" />
+<template is="logo"/>
+
+<view class="index" role="tablist">
+    <!-- <view class="introduce">
+    <text>长安通公交二维码是西安城市新开通的一种公交地铁乘车方式，使用小程序上的二维码在验票机器上扫一扫，即可方便乘车，先乘车后付费，免去没有领取没带公交卡的烦恼。</text>
+
+    </view>
+    <view class="introduce">
+    <text>开通公交刷码服务，需要先缴纳押金并签约支付宝代扣，并获得一张电子公交卡，乘车时使用该二维码即可。不想使用时，你可以随时申请退卡。</text>
+    </view> -->
+    <view class="register">
+        <button type="primary" onTap="register">开通账号</button>
+    </view>
+    <view class="agreement">
+        领取卡片并同意<text>协议</text>
+    </view>
+        
+    <view class="slogan">
+        — 先乘车，后付款 —
+    </view>
+    <view class="slogan-content">
+        领卡后，刷码乘车
+    </view>
+    <view class="footer">
+        <navigator url="/pages/line/line" >开通线路</navigator>
+        <text style="color:#dcdcdc; margin: 0 10rpx;">|</text> 
+        <navigator url="/pages/help/help" >使用帮助</navigator>
+    </view>
+</view>
+

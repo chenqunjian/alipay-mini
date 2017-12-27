@@ -1,0 +1,34 @@
+
+
+page {
+  background-color: #fff;
+}
+
+.index {
+  background-color: #fff;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  min-height: 100%;
+  font-size: 28rpx;
+  padding: 32rpx;
+}
+
+.widgets__item {
+  margin-bottom: 0rpx;
+  overflow: hidden;
+  border-radius: 4rpx;
+  cursor: pointer;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.widgets__info {
+  display: flex;
+  padding: 20rpx 0rpx 10rpx 30rpx;
+  align-items: center;
+  flex-direction: row;
+}
+
+
+.line_memo{
+  color: #ccc;
+  padding: 0rpx 30rpx 10rpx 30rpx;
+}

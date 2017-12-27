@@ -1,0 +1,12 @@
+<!-- 开通线路 -->
+
+<view class="index">
+<view a:for="{{lineList}}" a:for-item="item" a:key="id" class="widgets__item">
+    <view class="widgets__info">
+        <text>{{item.number}}</text>
+    </view>
+    <view class="line_memo">
+        <text>{{item.start}}-{{item.end}}</text>
+    </view>
+</view>
+</view>

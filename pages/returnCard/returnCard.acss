@@ -1,0 +1,17 @@
+.page{
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.return-title{
+    margin: 25rpx 0 18rpx;
+    font-size: 34rpx;
+}
+
+.return-info{
+    font-size: 30rpx;
+    color: #888888;
+}

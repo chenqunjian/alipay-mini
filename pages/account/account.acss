@@ -1,0 +1,62 @@
+.header{
+    margin: -2rpx 0 0 -1rpx;
+    position: relative;
+    color: #ffffff;
+    height: 400rpx;
+}
+
+.header .title{
+    position: absolute;
+    top: 40rpx;
+    left: 20rpx;
+    font-size: 35rpx;
+}
+
+.header .balance{
+    position: absolute;
+    top:120rpx;
+    left: 20rpx;
+    font-size: 90rpx;
+}
+
+.header .discount{
+    position: absolute;
+    top: 300rpx;
+    left: 30rpx;
+    background: #FFAB55;
+    border-radius: 8rpx;
+    padding: 0 5rpx;
+}
+
+.header .notice{
+    position: absolute;
+    top: 300rpx;
+    left: 165rpx;
+}
+
+.header image{
+    height: 100%;
+    width: 100%;
+}
+
+
+.pay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120rpx;
+    /* margin-top: 30rpx; */
+    background: #ffffff;
+}
+
+.pay image{
+    height: 50%;
+    width: 50%;
+    margin-left: 30rpx;
+}
+
+
+.pay .text{
+    flex: 2;
+    font-size: 30rpx;
+}

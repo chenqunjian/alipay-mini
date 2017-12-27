@@ -1,0 +1,5 @@
+<!-- 列表为空 -->
+<view>
+  <image src="../../image/icon_warning" mode="" />
+  <view>订单为空</view>
+</view>

@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/register/register",
+    "pages/index/index",
+
+    "pages/payResult/payResult",
+    "pages/introduce/introduce",
+    "pages/qrcode/qrcode",
+    "pages/line/line",
+    "pages/help/help",
+    "pages/account/account",
+
+    "pages/busRecord/busRecord",
+    "pages/returnCard/returnCard",
+    "pages/pay/pay",
+    "pages/payRecord/payRecord"
+
+  ],
+  "window": {
+    "defaultTitle": "长安通乘车码"
+  }
+}
