@@ -2,6 +2,7 @@
 
 page{
     background-color: #f5f5f9;
+    margin-bottom: 30rpx;
 }
 
 .month{
@@ -20,7 +21,7 @@ page{
 }
 
 /* .record-info:last-child{
-    margin: 0 auto;
+    margin: 0 auto 30rpx;
     width: 95%;
     border-bottom: none;
 } */
