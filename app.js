@@ -17,6 +17,7 @@ App({
       customerNo: '',
       cardNo: ''
     },
-    balance: 0,   //余额
+    balance: 0,   //余额,
+    cardReturning: false //正在退卡中
   }
 });

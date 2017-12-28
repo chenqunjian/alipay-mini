@@ -4,8 +4,13 @@ import {http} from '../../libs/http'
 let app = getApp()
 Page({
   data: {
-    cardNo: "2017093009856",
-    userCode: ""
+    cardNo: "",
+    cardReturning: 0,
+    disableUse:{
+      buttonText: '立即使用',
+      disabledQrcode: false
+    }
+
   },
   onLoad() {
 
@@ -24,15 +29,17 @@ Page({
   },
   /**
    *  获取卡信息
-   *  
+   *  000000  卡正常
    *  100000  卡信息不存在
-   *  
+   *  200000  卡注销未退款
+   *  300000  卡注销已退款
+   *  400000  参数错误
    */
   getCardStatus(){
     http('/getBizTkCardStatus').then((result)=>{
       console.log(result)
-      if(result.responseCode == "100000"){
-        //卡信息不存在
+      if(result.responseCode == "100000" || result.responseCode == "300000"){
+        //卡信息不存在或卡注销已退款
         let userInfo = {
           customerNo: '',
           cardNo: ''
@@ -42,15 +49,30 @@ Page({
         my.redirectTo({
           url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
         }) 
+      }else if(result.responseCode == "200000"){
+        //卡注销未退款
+        app.globalData.cardReturning = true
+        
+        let disableUse = {
+          buttonText: '正在退款中',
+          disabledQrcode: true
+        }
+
+        this.setData({
+          cardReturning: 1,
+          disableUse
+        })
       }
  
     })
   },
   clearCache(){
-    my.setStorage({
-        key: 'user_info', // 缓存数据的 key
-        data: '', // 要缓存的数据
-    })
+    let userInfo = {
+      customerNo: '',
+      cardNo: ''
+    }
+    saveUserInfo(userInfo)
+
     my.showToast({content: '清除成功'})
     my.navigateTo({
       url: '/pages/introduce/introduce'
@@ -76,6 +98,11 @@ Page({
     })
   },
   pay(){
+    if(app.globalData.cardReturning){
+      my.showToast({content: '正在申请退款中'})
+      return
+    }
+
     my.navigateTo({
       url: '/pages/pay/pay'
     })
@@ -86,28 +113,44 @@ Page({
     })
   },
   returnCard(){
-    //退卡
-    my.confirm({
-      content: '退卡后您将不能再享受手机乘公交的便捷服务',
-      confirmButtonText: '残忍退卡',
-      cancelButtonText: '我再想想',
-      success: (result) => {
-        console.log(result)
-        if(result.confirm == true){
-          http('/refundApply').then((result)=>{
-            console.log(result)
-            if(result.responseCode !== "000000"){
-                my.alert({content: result.responseDesc}) 
-                return
-            }
+    if(this.data.cardReturning){
+      my.confirm({
+        content: '您的退卡申请已提交，正在审核中',
+        confirmButtonText: '查看进度',
+        cancelButtonText: '我知道了',
+        success: (res) => {
+          if(result.confirm == true){
             my.navigateTo({
               url: '/pages/returnCard/returnCard'
             })
+          }
+        },
+      });
+    }
+    else{
+    //退卡
+      my.confirm({
+        content: '退卡后您将不能再享受手机乘公交的便捷服务',
+        confirmButtonText: '残忍退卡',
+        cancelButtonText: '我再想想',
+        success: (result) => {
+          console.log(result)
+          if(result.confirm == true){
+            http('/refundApply').then((result)=>{
+              console.log(result)
+              if(result.responseCode !== "000000"){
+                  my.alert({content: result.responseDesc}) 
+                  return
+              }
+              my.navigateTo({
+                url: '/pages/returnCard/returnCard'
+              })
 
-          })
-        }
-      },
-    })
+            })
+          }
+        },
+      })
+    }
   }
 
 

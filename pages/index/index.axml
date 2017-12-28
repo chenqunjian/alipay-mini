@@ -37,7 +37,7 @@
     </view>
   </view>
   <view class="use">
-    <button type="primary" onTap="use" >立即使用</button>
+    <button type="primary" onTap="use" disabled="{{disableUse.disabledQrcode}}">{{disableUse.buttonText}}</button>
   </view>
 
 </view>
