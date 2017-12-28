@@ -43,7 +43,7 @@ page {
   border-radius: 10rpx;
   width: 28%;
   /* height: 100rpx; */
-  margin: 10rpx;
+  margin: 20rpx 9rpx 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,9 +71,31 @@ page {
 }
 
 .footer{
-  position: absolute;
-  bottom: 60rpx;
-  left: 45%;
+  /* position: absolute; */
+  /* bottom: 60rpx; */
+  /* left: 45%; */
+  left: 0;
+  text-align: center;
   font-size: 34rpx;
+  position: absolute; 
+  bottom: 30rpx; 
+  width: 100%;
+  /* background-color: #ffc0cb; */
+}
 
+
+
+.agree{
+  font-size: 30rpx;
+  margin-top: 24rpx;
+  color: #999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.agree image{
+  width: 30rpx;
+  height: 30rpx;
 }
