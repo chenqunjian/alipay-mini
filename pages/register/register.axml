@@ -1,6 +1,11 @@
-<!-- 绑定手机号 -->
+<!-- <import src="../../component/logo/logo.axml" />
+<template is="logo"/> -->
 
-<view class="page">
+<import src="../../component/empty/empty.axml"/>
+<template is="empty" data="{{text: '错误'}}"/>
+ 
+<!-- 绑定手机号 -->
+<!-- <view class="page">
     <view class="card">
         <image src="/image/card.png" mode="aspectFit" />
         <view class="notice">*该电子卡为实名卡，请核对您的实名信息</view>
@@ -36,12 +41,14 @@
 <view class="mask" a:if="{{openCardSuccess}}">
 
 </view>
+-->
+
 <!-- <view a:if="{{openCardSuccess}}" class="open-card">
     <image src="/image/card-open-success.png" mode="aspectFit" />
     <view class="toast-footer">
         <view><navigator open-type="redirect" url="/pages/index/index">查看卡片</navigator></view>
         <view>|</view>
-        <view><navigator url="/pages/pay/pay">立即充值</navigator></view>
+        <view><navigator url="/pages/pay/pay">立即充值</navigator></view> 
     </view>
 </view> -->
 

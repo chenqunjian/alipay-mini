@@ -46,7 +46,7 @@ page {
   /* text-align: center; */
   color: #108ee9;
   position: absolute;
-  bottom: 20rpx;
+  bottom: 5%;
   left: 30%;
   display: flex;
 }

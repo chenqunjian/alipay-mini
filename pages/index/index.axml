@@ -15,9 +15,17 @@
       <image src="/image/rechargeAuto_icon.png" mode="aspectFit" />
       <view>卡片充值</view>
     </view>
+    <view class="menu-item" onTap="develop">
+      <image src="/image/trafficSearch_icon.png" mode="aspectFit" />
+      <view>公交查询</view>
+    </view>
     <view class="menu-item" onTap="busRecord">
       <image src="/image/trafficLog_icon.png" mode="aspectFit" />
       <view>乘车记录</view>
+    </view>
+    <view class="menu-item" onTap="develop">
+      <image src="/image/userFeedBack_icon.png" mode="aspectFit" />
+      <view>用户反馈</view>
     </view>
     <view class="menu-item" onTap="returnCard">
       <image src="/image/cardClose_icon.png" mode="aspectFit" />

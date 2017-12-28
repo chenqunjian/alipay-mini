@@ -26,12 +26,39 @@ Page({
       }
   },
   onLoad() {
-    my.getAuthCode({
-      scopes: 'auth_user', // 主动授权：auth_user，静默授权：auth_base
-      success: (res) => {
-        console.log(res)
-      },
-    });
+    // my.getAuthCode({
+    //   scopes: 'auth_user', // 主动授权：auth_user，静默授权：auth_base
+    //   success: (res) => {
+    //     console.log(res)
+    //   },
+    // })
+    let url = "https://memberprod.alipay.com/account/openform/activecard.htm?app_id=2017080708077054&template_id=20171211000000000687259000300359&__webview_options__=canPullDown%3dNO%26transparentTitle%3dauto"
+    //先判断当前环境是否能够使用
+    if (my.canIUse('addCardAuth')) {
+        my.addCardAuth({ url: url,
+            success: (res) => {
+                my.alert({content: '授权成功'})
+                my.alert({content: JSON.stringify(res)})
+                //上传auth_code
+//                 {"result":{"app_id":"2017080708077054","auth_code":"90937a4fa28e4dde8ba99469228dOX94",
+                // "request_id":"20171227015874817220904638943","scope":auth_base%2Cauth_user%2Cauth_ecard","state":
+// "bWNhcmQ%3D","template_id":"20171211000000000687259000300359"},"resultStatus":"9000
+// ","success":true}
+                // if(res.resultStatus == "9000" && res.success){
+                    
+                // }
+                
+                my.redirectTo({
+                  url: '/pages/index/index', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
+                })
+            },
+            fail: (res) => {
+                my.alert({content: '授权失败'}); my.alert({content: JSON.stringify(res)}); alertAndCopy(res);
+            }, 
+        });
+    } else {
+        my.alert({content: '当前 付宝钱包版本过低，需要升级后才可使 哦'});
+    }
   },
   getInputName(e){
     let name = e.detail.value;

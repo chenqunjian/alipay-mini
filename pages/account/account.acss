@@ -42,7 +42,7 @@
 
 .pay{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 120rpx;
     /* margin-top: 30rpx; */
@@ -52,11 +52,11 @@
 .pay image{
     height: 50%;
     width: 50%;
-    margin-left: 30rpx;
+    flex: 1;
 }
 
 
 .pay .text{
-    flex: 2;
+    flex: 4;
     font-size: 30rpx;
 }

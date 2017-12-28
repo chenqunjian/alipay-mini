@@ -1,4 +1,6 @@
 Page({
-  data: {},
+  data: {
+    balance: 0
+  },
   onLoad() {},
 });

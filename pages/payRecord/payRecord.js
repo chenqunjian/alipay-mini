@@ -1,5 +1,11 @@
+import {http} from '../../libs/http'
+
 Page({
   data: {
+    page: 1,
+    pageSize: 10,
+    hasNextPage: true,
+    isLoading: false, //正在请求接口
     recordList:[
       {
         money: 1.50,
@@ -47,6 +53,45 @@ Page({
   onLoad() {
     this.sortRecord()
     this.formatRecord()
+  },
+  // onLoad() {
+  //   this.requestList()
+  // },
+  onReachBottom(){
+    console.log("onReachBottom" + this.data.page)
+    if(this.isLoading){
+      return
+    }
+    this.setData({
+      isLoading: true
+    })
+    if (this.data.hasNextPage) {
+      my.showToast({content: '加载下一页...'})
+      this.requestList();
+    }
+  },
+  requestList(){
+    let page = this.data.page
+    let url = "/payRecord"
+    let data = {
+      page
+    }
+    http(url, data, 'POST').then((res)=>{
+
+      let recordList = res.recordList
+
+      this.setData({
+        isLoading: false,
+        page: page++,
+        recordList
+      })
+
+      this.sortRecord()
+      this.formatRecord()
+
+    })
+
+
   },
   formatRecord(){
     let recordList = [], record = []

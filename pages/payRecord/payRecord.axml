@@ -1,18 +1,23 @@
 <view>
-  <view a:for="{{recordList}}" a:for-item="item" a:key="{{item.month}}">
-    <view class="month">{{item.month}}月</view>
-    <view a:for="{{item.recordInfo}}" a:for-item="info" class="record">
-      <view class="record-info">
-        <view class="row line">
-          <text>{{info.date}}</text>
-          <text>{{info.money}}</text>
-        </view>
-        <view class="row date">
-          <text>充值成功</text>
-          <!-- <text>电子公交卡</text> -->
+  <block a:if="{{recordList.length}}">
+    <view a:for="{{recordList}}" a:for-item="item" a:key="{{item.month}}">
+      <view class="month">{{item.month}}月</view>
+      <view a:for="{{item.recordInfo}}" a:for-item="info" class="record">
+        <view class="record-info">
+          <view class="row line">
+            <text>{{info.date}}</text>
+            <text>{{info.money}}</text>
+          </view>
+          <view class="row date">
+            <text>充值成功</text>
+            <!-- <text>电子公交卡</text> -->
+          </view>
         </view>
       </view>
     </view>
-
-  </view>
+  </block>
+  <block a:else>
+    <import src="../../component/empty/empty.axml"/>
+    <template is="empty" data="{{text: '暂时没有充值订单'}}"/>
+  </block>
 </view>

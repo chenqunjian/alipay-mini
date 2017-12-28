@@ -1,6 +1,6 @@
 
 .block{
-    margin: 30rpx auto 0;
+    margin: 30rpx auto;
     width: 90%;
 }
 
@@ -9,7 +9,7 @@
     font-size: 34rpx;
     font-weight: 700;
 }
-
+ 
 .answer{
     margin-top: 10rpx;
     line-height: 40rpx; 

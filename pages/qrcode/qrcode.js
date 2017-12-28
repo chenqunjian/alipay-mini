@@ -41,18 +41,18 @@ Page({
   showQrImg(){
       
       // my.hideLoading();
-      this.setData({
-          reFresh: true
-      })
-      http('/qrcode').then((data)=>{
-          let str = data.qrcode;
-          console.log(str)
-        //   str = "data:image/jpg;base64," + str
-          this.setData({
-              qrcodeStr: str,
-              reFresh: false
-            })
-        })
+    //   this.setData({
+    //       reFresh: true
+    //   })
+    //   http('/qrcode').then((data)=>{
+    //       let str = data.qrcode;
+    //       console.log(str)
+    //     //   str = "data:image/jpg;base64," + str
+    //       this.setData({
+    //           qrcodeStr: str,
+    //           reFresh: false
+    //         })
+    //     })
   },
 
 

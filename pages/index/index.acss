@@ -22,7 +22,8 @@ page{
 
 .menu{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
     margin: 30rpx auto 0;
     padding: 30rpx;
     width: 80%;
@@ -30,12 +31,13 @@ page{
 }
 
 .menu-item{
-    width: 20%;
+    width: 25%;
     font-size: 25rpx;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 15rpx;
 }
 
 .menu image{
@@ -45,8 +47,8 @@ page{
 
 .use{
     width: 90%;
-    position: relative;
-    top:120rpx;
+    position: absolute;
+    bottom: 10rpx;
     left: 30rpx;
     /* margin: 150rpx auto 0; */
 }

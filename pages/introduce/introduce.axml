@@ -14,7 +14,7 @@
         <button type="primary" onTap="register">开通账号</button>
     </view>
     <view class="agreement">
-        领取卡片并同意<text>协议</text>
+        领取卡片并同意<text onTap="agreement">协议</text>
     </view>
         
     <view class="slogan">

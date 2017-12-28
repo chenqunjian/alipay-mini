@@ -2,19 +2,19 @@
   <view class="header">
     <image src="/image/balance.png" mode="scaleToFill" />
     <view class="title">余额账户</view>
-    <view class="balance">86.20元</view>
-    <view class="discount">乘车8折</view>
+    <view class="balance">{{balance}}元</view>
+    <!-- <view class="discount">乘车8折</view> -->
     <view class="notice">余额可用于支付车费</view>
   </view>
   <view class="pay"> 
-    <view class="image">
+    <!-- <view class="image"> -->
       <image src="/image/pay_icon.png" mode="aspectFit" />
-    </view>
+    <!-- </view> -->
     <view class="text">
       <navigator url="/pages/pay/pay" >立即充值</navigator>
     </view>
-    <view class="image">
+    <!-- <view class="image"> -->
       <image src="/image/arrowright.png" mode="aspectFit"/>
-    </view>
+    <!-- </view> -->
   </view>
 </view>

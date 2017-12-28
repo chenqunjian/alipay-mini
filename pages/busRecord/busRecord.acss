@@ -1,3 +1,4 @@
+@import "../../component/empty/empty.acss";
 
 page{
     background-color: #f5f5f9;

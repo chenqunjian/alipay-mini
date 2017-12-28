@@ -1,17 +1,19 @@
 <view class="page">
   <view class="qrcode">
     <view class="header">
-      <image src="/image/changantong-logo.jpg" mode="aspectFit" />
+      <view class="logo">
+        <image src="/image/changantong-logo.jpg" mode="aspectFill" />
+      </view>
       <text>长安通乘车码</text>
     </view>
     <view class="content">
       <view class="qrcode-image" onTap="showQrImg">
-        <image src="{{qrcodeStr}}" mode="aspectFit" />
-        <!-- <image src="/image/qrcode.png" mode="aspectFit" /> -->
+        <!-- <image src="{{qrcodeStr}}" mode="aspectFill" /> -->
+        <image src="/image/qrcode.png" mode="aspectFill" />
       </view>
       <view class="tips">
         <view>
-          <image src="/image/refresh.png" mode="aspectFill" />
+          <image src="/image/refresh.png" mode="aspectFill"/>
         </view>
         <view a:if={{!reFresh}}>
           如刷码失败，请点击二维码<text onTap="showQrImg">刷新</text>
