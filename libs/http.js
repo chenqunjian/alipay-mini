@@ -6,7 +6,7 @@ export function http(url, data, method) {
     return new Promise((resolve, reject)=>{
         my.showLoading({
             content: '加载中...',
-            delay: 200,
+            delay: 10,
         });
         let userInfo = getUserInfo()
         // userInfo = {

@@ -1,11 +1,12 @@
 require('./config$');
-require('../..//pages/introduce/introduce');
 require('../..//pages/index/index');
+require('../..//pages/introduce/introduce');
 require('../..//pages/agreement/agreement');
 require('../..//pages/register/register');
 require('../..//pages/qrcode/qrcode');
 require('../..//pages/payResult/payResult');
 require('../..//pages/pay/pay');
+require('../..//pages/payResult/payResult');
 require('../..//pages/payRecord/payRecord');
 require('../..//pages/payRecordDetail/payRecordDetail');
 require('../..//pages/line/line');

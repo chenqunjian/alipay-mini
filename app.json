@@ -1,13 +1,15 @@
 {
   "pages": [
-    "pages/introduce/introduce",
-    "pages/index/index",
 
+    "pages/index/index",
+    "pages/introduce/introduce",
     "pages/agreement/agreement",
     "pages/register/register",
     "pages/qrcode/qrcode",
-    "pages/payResult/payResult",
     "pages/pay/pay",
+    "pages/payResult/payResult",
+
+    "pages/payResult/payResult",
     "pages/payRecord/payRecord",
     "pages/payRecordDetail/payRecordDetail",
     "pages/line/line",
