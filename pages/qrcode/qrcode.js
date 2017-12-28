@@ -1,18 +1,23 @@
 
 import {http} from '../../libs/http' 
-
+const reFreshTimeLimit = 50 //刷新间隔时间 秒
 Page({
   data: {
     qrcodeStr: "",
     isQrShow: false,
     isPageShowing: true,
-    reFresh: false
+    reFresh: false,
+    reFreshTime: 0
   },
   onLoad() {
     // my.showLoading({
     //     content: '加载中...',
     //     delay: '100',
     //   });
+    //显示二维码
+    // this.showQrImg()
+  },
+  onShow(){
     //显示二维码
     this.showQrImg()
   },
@@ -39,6 +44,16 @@ Page({
   },
   
   showQrImg(){
+    //刷新时间
+    let time = Math.round(new Date()/ 1000)
+    let waitTime = time - this.data.reFreshTime
+    if(waitTime <  reFreshTimeLimit){
+        my.showToast({
+          content: `请等待${reFreshTimeLimit - waitTime}秒后操作`
+        })
+        return
+    }
+
       
       // my.hideLoading();
     //   this.setData({
@@ -46,7 +61,18 @@ Page({
     //   })
     http('/getUserQRCord').then((result)=>{
         console.log(result)
-        if(result.responseCode !== "000000"){
+        if(result.responseCode == "000130"){
+            //余额不足，请先充值
+            my.alert({
+                content: '余额不足，请先充值',
+                success: ()=>{
+                    my.navigateTo({
+                        url: '/pages/pay/pay'
+                    });
+                }
+            }) 
+        }
+        else if(result.responseCode !== "000000"){
             my.alert({content: result.responseDesc}) 
             return
         }
@@ -54,34 +80,36 @@ Page({
         let str = result.qrCode;
         console.log(str)
         str = "data:image/jpg;base64," + str
+        
         this.setData({
             qrcodeStr: str,
-            reFresh: false
+            reFresh: false,
+            reFreshTime: time
         })
     })
   },
 
 
   // 刷新二维码
-  reFreshQr(){
+//   reFreshQr(){
       
-      // clearInterval(qrRefreshIntervalId);
-      let qrRefreshIntervalId = undefined;
-      if (qrRefreshIntervalId != undefined) {
-          clearInterval(qrRefreshIntervalId);
-      }
-      qrRefreshIntervalId = setInterval(()=> {
-          var isPageShowing = this.data.isPageShowing;
-          console.log("isPageShowing:", isPageShowing);
-          //页面不显示时，清除定时器
-          if (!isPageShowing) {
-              clearInterval(qrRefreshIntervalId);
-              console.log("qrRefreshIntervalId:", qrRefreshIntervalId);
-              return;
-          }
-          this.showQrImg();
+//       // clearInterval(qrRefreshIntervalId);
+//       let qrRefreshIntervalId = undefined;
+//       if (qrRefreshIntervalId != undefined) {
+//           clearInterval(qrRefreshIntervalId);
+//       }
+//       qrRefreshIntervalId = setInterval(()=> {
+//           var isPageShowing = this.data.isPageShowing;
+//           console.log("isPageShowing:", isPageShowing);
+//           //页面不显示时，清除定时器
+//           if (!isPageShowing) {
+//               clearInterval(qrRefreshIntervalId);
+//               console.log("qrRefreshIntervalId:", qrRefreshIntervalId);
+//               return;
+//           }
+//           this.showQrImg();
           
-      }, 60000);
-  }
+//       }, 60000);
+//   }
 
 });
