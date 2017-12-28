@@ -4,10 +4,10 @@
         <view class="record-info" data-record={{item}} onTap="showDetail">
           <view class="row">
             <text class="title">充值</text>
-            <text class="money">-{{item.money}}</text>
+            <text class="money">-{{item.transamt}}</text>
           </view>
           <view class="row date">
-            <text>{{item.date}}</text>
+            <text>{{item.transtime}}</text>
             <text></text>
           </view> 
         </view> 

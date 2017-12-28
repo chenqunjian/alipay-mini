@@ -18,9 +18,9 @@ Page({
     if(this.isLoading){
       return
     }
-    this.setData({
-      isLoading: true
-    })
+    // this.setData({
+    //   isLoading: true
+    // })
     if (this.data.hasNextPage) {
       my.showToast({content: '加载下一页...'})
       this.requestList();
@@ -37,33 +37,50 @@ Page({
         return
       }
 
-      let recordList = res.resList
+      let recordList = this.data.recordList
+      
+      let resList = this.formatRecord(res.resList)
+      if(page == 1){
+        recordList = resList
+      }
+      else {
+        recordList.push(...resList);
+      }
+      
+      let hasNextPage = true
+      if(res.page == page){
+        //最后一页
+        hasNextPage = false        
+      }
 
+      page++
       this.setData({
         isLoading: false,
-        page: page++,
-        recordList
+        page,
+        recordList,
+        hasNextPage
       })
+      console.log(this.data.hasNextPage)
+      console.log(this.data.page)
 
       this.sortRecord()
-      this.formatRecord()
+
 
     })
   },
-  formatRecord(){
-    let recordInfo = {},recordList = []
-    this.data.recordList.forEach((element)=>{
-      let money = formatMoney(element.transamt)
-      recordInfo.money = money
-      recordInfo.date = element.transtime
-      recordInfo.orderSn = element.transseq //订单号
+  formatRecord(recordListIn){
+    let recordInfo = {},recordListOut = []
+    recordListIn.forEach((element)=>{
+      recordInfo = {}
+      let transamt = formatMoney(element.transamt)
+      recordInfo.transamt = transamt    //金额
+      recordInfo.transtime = element.transtime //交易时间
+      recordInfo.transseq = element.transseq //订单号
 
-      recordList.push(recordInfo)
+      recordListOut.push(recordInfo)
+
     })
-    console.log(recordList)
-    this.setData({
-      recordList
-    })
+    return recordListOut
   },
   // formatRecord(){
   //   let recordList = [], record = []
@@ -99,7 +116,11 @@ Page({
   sortRecord(){
     let recordList = this.data.recordList
     recordList.sort((a, b)=>{
-      return a.date > b.date ? -1 : 1
+      // return a.date > b.date ? -1 : 1
+      let aDate = new Date(a.transtime),
+        bDate = new Date(b.transtime)
+      return aDate.getTime() > bDate.getTime() ? -1 : 1
+
     })
     this.setData({
       recordList
@@ -107,12 +128,9 @@ Page({
   },
   showDetail(event){
     console.log(event)
-    let recordInfo = event.target.dataset
+    let recordInfo = event.target.dataset.record
     console.log(recordInfo)
-    let url = `/pages/payRecordDetail/payRecordDetail?
-              money=${recordInfo.money}&
-              date=${recordInfo.date}&
-              orderSn=${recordInfo.orderSn}`
+    let url = `/pages/payRecordDetail/payRecordDetail?money=${recordInfo.transamt}&date=${recordInfo.transtime}&orderSn=${recordInfo.transseq}`
     my.navigateTo({
       url
     });
