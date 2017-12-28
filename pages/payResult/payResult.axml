@@ -8,4 +8,7 @@
   <view class="money">
     {{money}}元
   </view>
+  <view>
+    <button type="primary" onTap="back" >返回</button>
+  </view>
 </view>
