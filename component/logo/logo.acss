@@ -3,16 +3,17 @@
 .logo_bg{
   position: relative;
   margin-top: -2rpx;
-  margin-bottom: 80rpx;
+  margin-bottom: 40rpx;
   width: 100%;
   height: 500rpx;
-  background: url(https://cdnweb04.96225.com/images/bg.png) top center no-repeat;
+  /* background: url(https://cdnweb04.96225.com/images/bg.png) top center no-repeat; */
+  background: url(../../image/card_detail_bg.jpg) top center no-repeat;
   background-size: 100% auto;
 }
 
 .logo_img{
-  margin: 15% 5% 5% 5%;
+  margin: 8% 5% 5% 5%;
   width: 90%;
-  height: 430rpx;
+  height: 90%;
   background-size: 100% auto;
 }

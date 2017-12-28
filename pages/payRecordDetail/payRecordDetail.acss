@@ -1,0 +1,46 @@
+.page{
+    background-color: #ffffff;
+    padding-bottom: 0;
+}
+.header{
+    height: 339rpx;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.money{
+    font-size: 64rpx;
+    color: #333333;
+}
+
+.status{
+    font-size: 30rpx;
+    color: #999999;
+    margin-top: 8rpx;
+}
+
+
+
+.row{
+    margin-top: 30rpx;
+    line-height: 42rpx;
+    display: flex;
+    justify-content: space-between;  
+    padding: 20rpx 0;  
+}
+
+.row:first-child{
+    border-bottom: 1rpx solid #eeeeee;
+}
+
+.row .left{
+    color: #333333;
+    font-size: 30rpx;
+}
+
+.row .right{
+    color: #999999;
+    font-size: 30rpx;
+}

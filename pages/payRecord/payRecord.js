@@ -1,4 +1,5 @@
 import {http} from '../../libs/http'
+import {formatMoney} from '../../libs/utils'
 
 Page({
   data: {
@@ -6,57 +7,12 @@ Page({
     pageSize: 10,
     hasNextPage: true,
     isLoading: false, //正在请求接口
-    recordList:[
-      {
-        money: 1.50,
-        line: 506,
-        date: '12-11 12:12'
-      },
-      {
-        money: 1.50,
-        line: 506,
-        date: '12-12 12:12'
-      },
-      {
-        money: 1.50,
-        line: 506,
-        date: '12-12 12:12'
-      },
-      {
-        money: 1.50,
-        line: 506,
-        date: '11-12 12:12'
-      },
-      // {
-      //   month: '12',
-      //   recordInfo: [
-      //     {
-      //       money: 1.50,
-      //       line: 506,
-      //       date: '12-12 12:12'
-      //     },
-      //     {
-      //       money: 1.50,
-      //       line: 506,
-      //       date: '12-12 12:12'
-      //     },
-      //     {
-      //       money: 1.50,
-      //       line: 506,
-      //       date: '12-12 12:12'
-      //     }
-      //   ]
-      // }
-      
-    ]
+    recordList:[]
   },
+
   onLoad() {
-    this.sortRecord()
-    this.formatRecord()
+    this.requestList()
   },
-  // onLoad() {
-  //   this.requestList()
-  // },
   onReachBottom(){
     console.log("onReachBottom" + this.data.page)
     if(this.isLoading){
@@ -72,13 +28,16 @@ Page({
   },
   requestList(){
     let page = this.data.page
-    let url = "/payRecord"
+    let url = "/queryUserChargeRecordList"
     let data = {
       page
     }
     http(url, data, 'POST').then((res)=>{
+      if(res.responseCode != "000000"){
+        return
+      }
 
-      let recordList = res.recordList
+      let recordList = res.resList
 
       this.setData({
         isLoading: false,
@@ -90,40 +49,53 @@ Page({
       this.formatRecord()
 
     })
-
-
   },
   formatRecord(){
-    let recordList = [], record = []
-    let month = ''
-    let find = 0;
+    let recordInfo = {},recordList = []
+    this.data.recordList.forEach((element)=>{
+      let money = formatMoney(element.transamt)
+      recordInfo.money = money
+      recordInfo.date = element.transtime
+      recordInfo.orderSn = element.transseq //订单号
 
-    this.data.recordList.forEach((element) => {
-      month = element.date.substring(0, 2)
-      console.log(month)
-      
-      find = 0;
-      recordList.forEach((item, key)=>{
-        if(item.month == month){
-          recordList[key]['recordInfo'].push(element)
-          find = 1;
-        }
-      })
-      if(find == 0){
-        recordList.push({
-          'month': month,
-          'recordInfo':[
-            element
-          ]
-        })
-      }
-      
+      recordList.push(recordInfo)
     })
     console.log(recordList)
     this.setData({
       recordList
     })
   },
+  // formatRecord(){
+  //   let recordList = [], record = []
+  //   let month = ''
+  //   let find = 0;
+
+  //   this.data.recordList.forEach((element) => {
+  //     month = element.date.substring(0, 2)
+  //     console.log(month)
+      
+  //     find = 0;
+  //     recordList.forEach((item, key)=>{
+  //       if(item.month == month){
+  //         recordList[key]['recordInfo'].push(element)
+  //         find = 1;
+  //       }
+  //     })
+  //     if(find == 0){
+  //       recordList.push({
+  //         'month': month,
+  //         'recordInfo':[
+  //           element
+  //         ]
+  //       })
+  //     }
+      
+  //   })
+  //   console.log(recordList)
+  //   this.setData({
+  //     recordList
+  //   })
+  // },
   sortRecord(){
     let recordList = this.data.recordList
     recordList.sort((a, b)=>{
@@ -132,5 +104,17 @@ Page({
     this.setData({
       recordList
     })
+  },
+  showDetail(event){
+    console.log(event)
+    let recordInfo = event.target.dataset
+    console.log(recordInfo)
+    let url = `/pages/payRecordDetail/payRecordDetail?
+              money=${recordInfo.money}&
+              date=${recordInfo.date}&
+              orderSn=${recordInfo.orderSn}`
+    my.navigateTo({
+      url
+    });
   }
 });

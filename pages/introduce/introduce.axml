@@ -2,7 +2,7 @@
 <import src="../../component/logo/logo.axml" />
 <template is="logo"/>
 
-<view class="index" role="tablist">
+<view>
     <!-- <view class="introduce">
     <text>长安通公交二维码是西安城市新开通的一种公交地铁乘车方式，使用小程序上的二维码在验票机器上扫一扫，即可方便乘车，先乘车后付费，免去没有领取没带公交卡的烦恼。</text>
 
@@ -27,6 +27,17 @@
         <navigator url="/pages/line/line" >开通线路</navigator>
         <text style="color:#dcdcdc; margin: 0 10rpx;">|</text> 
         <navigator url="/pages/help/help" >使用帮助</navigator>
+    </view>
+    <view a:if="{{showCardLoading}}" class="toast-show">
+        <image src="/image/card-loading.png" mode="aspectFit" />
+    </view>
+    <view a:if="{{openCardSuccess}}" class="open-card">
+        <image src="/image/card-open-success.png" mode="aspectFit" />
+        <view class="toast-footer">
+            <view><navigator open-type="redirect" url="/pages/index/index">查看卡片</navigator></view>
+            <view>|</view>
+            <view><navigator url="/pages/pay/pay">立即充值</navigator></view> 
+        </view>
     </view>
 </view>
 

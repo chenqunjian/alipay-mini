@@ -1,7 +1,8 @@
 export const serverConfig = {
-    gatewayServer: "https://easy-mock.com/mock/599151aba1d30433d8611d40",
+    gatewayServer: "http://9kcqzi.natappfree.cc/mini-program-geteway/mini",
 };
 
+export const getCardUrl = "https://memberprod.alipay.com/account/openform/activecard.htm?app_id=2017122601245171&template_id=20171227000000000719164000300116&__webview_options__=canPullDown%3dNO%26transparentTitle%3dauto"
 
 //用户状态枚举定义，与服务端保持一致
 export const userStatusEnum = {

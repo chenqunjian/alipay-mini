@@ -1,5 +1,8 @@
 <!-- 列表为空 -->
-<view>
-  <image src="../../image/icon_warning" mode="" />
-  <view>订单为空</view>
+<template name="empty">
+<view class="page">
+  <view class="icon">
+    <image src="../../image/empty-box.png" mode="aspectFit" />
+  </view>
+  <view class="tips">{{text}}</view>
 </view>

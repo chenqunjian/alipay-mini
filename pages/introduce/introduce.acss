@@ -50,3 +50,35 @@ page {
   left: 30%;
   display: flex;
 }
+
+.toast-show{
+  position: absolute;
+  top:35%;
+  left: 28%;
+}
+
+.open-card{
+  position: absolute;
+  top:25%;
+  left: 10%;
+  width: 80%;
+}
+
+.open-card image{
+  /* height: 100%; */
+  width: 100%;
+  height: 500rpx;
+}
+
+.toast-footer{
+  margin-top: -20rpx;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80rpx;
+  font-size: 40rpx;
+  border-right: 1rpx solid #dcdcdc;
+  border-left: 1rpx solid #dcdcdc;
+  border-bottom: 1rpx solid #dcdcdc;
+}

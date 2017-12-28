@@ -1,19 +1,24 @@
 {
   "pages": [
-    "pages/register/register",
+    "pages/introduce/introduce",
     "pages/index/index",
 
-    "pages/payResult/payResult",
-    "pages/introduce/introduce",
+    "pages/agreement/agreement",
+    "pages/register/register",
     "pages/qrcode/qrcode",
+    "pages/payResult/payResult",
+    "pages/pay/pay",
+    "pages/payRecord/payRecord",
+    "pages/payRecordDetail/payRecordDetail",
     "pages/line/line",
     "pages/help/help",
     "pages/account/account",
 
+
     "pages/busRecord/busRecord",
-    "pages/returnCard/returnCard",
-    "pages/pay/pay",
-    "pages/payRecord/payRecord"
+    "pages/returnCard/returnCard"
+
+
 
   ],
   "window": {

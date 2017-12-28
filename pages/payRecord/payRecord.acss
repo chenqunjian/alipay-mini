@@ -16,7 +16,11 @@ page{
 .record-info{
     margin: 0 auto;
     width: 95%;
-    border-bottom: 1rpx solid #dcdcdc;
+    border-bottom: 1rpx solid #e0e0e0;
+}
+
+.record-info:first-child{
+    border-top: 1rpx solid #e0e0e0;
 }
 
 /* .record-info:last-child{
@@ -32,11 +36,18 @@ page{
     padding: 30rpx 30rpx 10rpx;
 }
 
-.line{
+
+.title{
+    font-size: 30rpx;
+    color: #333333;
+}
+
+.money{
+    color: #333333;
     font-size: 34rpx;
 }
 
 .date{
-    font-size: 30rpx;
-    color: #888888;
+    font-size: 24rpx;
+    color: #999999;
 }

@@ -1,5 +1,7 @@
-import {getUserInfo} from '../../libs/utils'
+import {saveUserInfo, getUserInfo} from '../../libs/utils'
+import {http} from '../../libs/http'
 
+let app = getApp()
 Page({
   data: {
     cardNo: "2017093009856",
@@ -15,20 +17,59 @@ Page({
         url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
       }) 
     }
-
-
     this.setData({
       cardNo: userInfo.cardNo
     })
+    this.getCardStatus()
+  },
+  /**
+   *  获取卡信息
+   *  
+   *  100000  卡信息不存在
+   *  
+   */
+  getCardStatus(){
+    http('/getBizTkCardStatus').then((result)=>{
+      console.log(result)
+      if(result.responseCode == "100000"){
+        //卡信息不存在
+        let userInfo = {
+          customerNo: '',
+          cardNo: ''
+        }
+        saveUserInfo(userInfo)
+
+        my.redirectTo({
+          url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
+        }) 
+      }
+ 
+    })
+  },
+  clearCache(){
+    my.setStorage({
+        key: 'user_info', // 缓存数据的 key
+        data: '', // 要缓存的数据
+    })
+    my.showToast({content: '清除成功'})
+    my.navigateTo({
+      url: '/pages/introduce/introduce'
+    });
   },
   develop(){
     my.showToast({content: '建设中'})
   },
+  /** 
+   * 跳转到二维码界面
+  */
   use(){
     my.navigateTo({
       url: '/pages/qrcode/qrcode'
     });
   },
+   /** 
+   * 账户
+  */
   account(){
     my.navigateTo({
       url: '/pages/account/account'
@@ -53,27 +94,20 @@ Page({
       success: (result) => {
         console.log(result)
         if(result.confirm == true){
-          my.navigateTo({
-            url: '/pages/returnCard/returnCard'
+          http('/refundApply').then((result)=>{
+            console.log(result)
+            if(result.responseCode !== "000000"){
+                my.alert({content: result.responseDesc}) 
+                return
+            }
+            my.navigateTo({
+              url: '/pages/returnCard/returnCard'
+            })
+
           })
         }
       },
     })
-
-    //退卡申请已经提交
-    // my.confirm({
-    //   content: '您的退卡申请正在审核中',
-    //   confirmButtonText: '查看进度',
-    //   cancelButtonText: '我知道了',
-    //   success: (result) => {
-    //     console.log(result)
-    //     if(result.confirm == true){
-    //       my.navigateTo({
-    //         url: '/pages/returnCard/returnCard'
-    //       })
-    //     }
-    //   },
-    // })
   }
 
 

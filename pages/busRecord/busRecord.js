@@ -1,3 +1,6 @@
+import {http} from '../../libs/http'
+import {formatMoney} from '../../libs/utils'
+
 Page({
   data: {
     page: 1,
@@ -5,56 +8,26 @@ Page({
     hasNextPage: true,
     isLoading: false, //正在请求接口
     recordList:[
-      {
-        money: 1.50,
-        line: 506,
-        date: '12-11 12:12'
-      },
-      {
-        money: 1.50,
-        line: 506,
-        date: '12-12 12:12'
-      },
-      {
-        money: 1.50,
-        line: 506,
-        date: '12-12 12:12'
-      },
-      {
-        money: 1.50,
-        line: 506,
-        date: '11-12 12:12'
-      },
       // {
-      //   month: '12',
-      //   recordInfo: [
-      //     {
-      //       money: 1.50,
-      //       line: 506,
-      //       date: '12-12 12:12'
-      //     },
-      //     {
-      //       money: 1.50,
-      //       line: 506,
-      //       date: '12-12 12:12'
-      //     },
-      //     {
-      //       money: 1.50,
-      //       line: 506,
-      //       date: '12-12 12:12'
-      //     }
-      //   ]
-      // }
-      
+      //   money: 1.50,
+      //   line: 506,
+      //   date: '12-11 12:12'
+      // },
+      // {
+      //   money: 1.50,
+      //   line: 506,
+      //   date: '12-12 12:12'
+      // },
+
     ]
   },
-  onLoad() {
-    this.sortRecord()
-    this.formatRecord()
-  },
   // onLoad() {
-  //   this.requestList()
+  //   this.sortRecord()
+  //   this.formatRecord()
   // },
+  onLoad() {
+    this.requestList()
+  },
   onReachBottom(){
     console.log("onReachBottom" + this.data.page)
     if(this.isLoading){
@@ -70,13 +43,13 @@ Page({
   },
   requestList(){
     let page = this.data.page
-    let url = "/payRecord"
+    let url = "/queryUserConsumeRecordList"
     let data = {
       page
     }
     http(url, data, 'POST').then((res)=>{
 
-      let recordList = res.recordList
+      let recordList = res.resList
 
       this.setData({
         isLoading: false,
@@ -92,18 +65,23 @@ Page({
 
   },
   formatRecord(){
-    let recordList = [], record = []
+    let recordList = [], recordInfo = {}
     let month = ''
     let find = 0;
 
     this.data.recordList.forEach((element) => {
-      month = element.date.substring(0, 2)
+      let money = formatMoney(element.transamt)
+      recordInfo.money = money
+      recordInfo.date = element.transtime
+
+      
+      month = recordInfo.date.substring(0, 2)
       console.log(month)
       
       find = 0;
       recordList.forEach((item, key)=>{
         if(item.month == month){
-          recordList[key]['recordInfo'].push(element)
+          recordList[key]['recordInfo'].push(recordInfo)
           find = 1;
         }
       })
@@ -111,7 +89,7 @@ Page({
         recordList.push({
           'month': month,
           'recordInfo':[
-            element
+            recordInfo
           ]
         })
       }

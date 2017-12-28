@@ -46,6 +46,7 @@ Page({
         console.log(result)
         if(result.responseCode !== "000000"){
           my.alert({content: result.responseDesc}) 
+          return
         }
 
         let orderStr = result.payOrderStr
@@ -56,9 +57,11 @@ Page({
             if(res.resultCode == 9000){
                 my.showToast({content: '支付成功'})
                 //支付成功
-                my.redirectTo({
-                    url: '/pages/payResult/payResult?money='+money, // 需要跳转的 tabBar 页面的路径（需在 app.json 的 tabBar 字段定义的页面），路径后不能带参数
-                });
+                setTimeout(()=> {
+                  my.redirectTo({
+                    url: '/pages/payResult/payResult?money='+amount, // 需要跳转的 tabBar 页面的路径（需在 app.json 的 tabBar 字段定义的页面），路径后不能带参数
+                  });
+                }, 1000);  
             }
             else if(res.resultCode == 8000){
               my.alert({content: "订单处理中，请稍后查看"})

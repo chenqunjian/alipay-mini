@@ -8,8 +8,8 @@
     </view>
     <view class="content">
       <view class="qrcode-image" onTap="showQrImg">
-        <!-- <image src="{{qrcodeStr}}" mode="aspectFill" /> -->
-        <image src="/image/qrcode.png" mode="aspectFill" />
+        <image src="{{qrcodeStr}}" mode="aspectFill" />
+        <!-- <image src="/image/qrcode.png" mode="aspectFill" /> -->
       </view>
       <view class="tips">
         <view>

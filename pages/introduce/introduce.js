@@ -1,11 +1,22 @@
 import {getCardUrl} from '../../libs/config';
 import {http} from '../../libs/http'
-import {saveUserInfo} from '../../libs/utils'
+import {saveUserInfo, getUserInfo} from '../../libs/utils'
 
 const {globalData} = getApp();
 Page({
-    data: {},
-
+    data: {
+        showCardLoading: false,
+        openCardSuccess: false
+    },
+    onLoad(){
+        let userInfo = getUserInfo()
+        console.log(userInfo)
+        if(userInfo !== '' && userInfo.customerNo !== '' && userInfo.customerNo !== undefined && userInfo.customerNo !== null){
+            my.redirectTo({
+                url: '/pages/index/index', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
+            }) 
+        }
+    },
     onShow(){
         console.log('introduce show')
 
@@ -17,15 +28,15 @@ Page({
     },
     register(){
         //保存用户信息
-        // let userInfo = {}
-        // userInfo.customerNo = '1'
-        // userInfo.cardNo = '2'
-        // saveUserInfo(userInfo)
+        let userInfo = {}
+        userInfo.customerNo = '20171227000000020644'
+        userInfo.cardNo = '7100400000000086'
+        saveUserInfo(userInfo)
 
-        // my.redirectTo({
-        //     url: '/pages/index/index', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
-        // })
-        // return
+        my.redirectTo({
+            url: '/pages/index/index', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
+        })
+        return
         console.log({getCardUrl})
         // my.redirectTo({
         //     url: '/pages/register/register',
@@ -95,6 +106,9 @@ Page({
 // ","success":true}
                 if(res.resultStatus == "9000" && res.success){
 
+                    this.setData({
+                        showCardLoading: true
+                    })
                     // my.alert({content: JSON.stringify(res)}) 
                     let authCode = res.result.auth_code
                     let requestId = res.result.request_id
@@ -106,12 +120,18 @@ Page({
                     }
 
                     http(url, data, 'POST').then((result)=>{
+                        this.setData({
+                            showCardLoading: false
+                        })
                         console.log(result)
                         if(result.responseCode !== "000000"){
                             my.alert({content: result.responseDesc}) 
                             return
                         }
-                        my.showToast({content: '开卡成功'});
+                        this.setData({
+                            openCardSuccess: true
+                        })
+                        // my.showToast({content: '开卡成功'});
                         
                         //保存用户信息
                         let userInfo = {}
@@ -120,9 +140,9 @@ Page({
                         
                         saveUserInfo(userInfo)
 
-                        my.redirectTo({
-                            url: '/pages/index/index', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
-                        })
+                        // my.redirectTo({
+                        //     url: '/pages/index/index', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
+                        // })
                     })
 
                     

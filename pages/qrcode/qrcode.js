@@ -44,15 +44,21 @@ Page({
     //   this.setData({
     //       reFresh: true
     //   })
-    //   http('/qrcode').then((data)=>{
-    //       let str = data.qrcode;
-    //       console.log(str)
-    //     //   str = "data:image/jpg;base64," + str
-    //       this.setData({
-    //           qrcodeStr: str,
-    //           reFresh: false
-    //         })
-    //     })
+    http('/getUserQRCord').then((result)=>{
+        console.log(result)
+        if(result.responseCode !== "000000"){
+            my.alert({content: result.responseDesc}) 
+            return
+        }
+
+        let str = result.qrCode;
+        console.log(str)
+        str = "data:image/jpg;base64," + str
+        this.setData({
+            qrcodeStr: str,
+            reFresh: false
+        })
+    })
   },
 
 

@@ -1,4 +1,6 @@
 <template name="logo">
 <view class="logo_bg">
     <image class="logo_img" src="../../image/card.png" mode="scaleToFill"/>
+    <!-- <image src="../../image/wave_bg.png" mode="" /> -->
 </view>
+

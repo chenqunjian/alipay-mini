@@ -18,6 +18,6 @@
   </block>
   <block a:else>
     <import src="../../component/empty/empty.axml"/>
-    <template is="empty" data="{{text: '暂时没有充值订单'}}"/>
+    <template is="empty" data="{{text: '暂无乘车记录，快去乘车吧'}}"/>
   </block>
 </view>
