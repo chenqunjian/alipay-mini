@@ -119,7 +119,7 @@ Page({
         confirmButtonText: '查看进度',
         cancelButtonText: '我知道了',
         success: (res) => {
-          if(result.confirm == true){
+          if(res.confirm == true){
             my.navigateTo({
               url: '/pages/returnCard/returnCard'
             })
@@ -141,7 +141,18 @@ Page({
               if(result.responseCode !== "000000"){
                   my.alert({content: result.responseDesc}) 
                   return
-              }
+                }
+                app.globalData.cardReturning = true
+        
+                let disableUse = {
+                  buttonText: '正在退款中',
+                  disabledQrcode: true
+                }
+
+                this.setData({
+                  cardReturning: 1,
+                  disableUse
+                })
               my.navigateTo({
                 url: '/pages/returnCard/returnCard'
               })
