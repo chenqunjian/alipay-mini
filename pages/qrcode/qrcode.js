@@ -20,6 +20,35 @@ Page({
   onShow(){
     //显示二维码
     this.showQrImg()
+    
+    //获取屏幕亮度
+    if (my.canIUse('getScreenBrightness')) {
+        my.getScreenBrightness({
+            success: (res) => {
+                // my.alert({
+                //     title: '获取屏幕亮度成功',
+                //     content: JSON.stringify(res)
+                // })
+            },
+            fail: (res) => {
+                // my.alert({
+                //     title: '获取屏幕亮度错误',
+                //     content: JSON.stringify(res)
+                // })
+            },
+            complete:(res) =>{
+                // my.alert({
+                //     title: '获取屏幕亮度完成',
+                //     content: JSON.stringify(res)
+                // })
+            }
+        });
+    } else {
+        console.log("你的环境暂不支持此功能----my.getScreenBrightness")
+    }
+    //设置屏幕长亮
+    this.setKeepScreen(true)
+
   },
   onReady() {
     if (my.canIUse('onUserCaptureScreen')) {
@@ -36,11 +65,45 @@ Page({
       // Do something when page close.
       // this.setData({isPageShowing: false})
       this.data.isPageShowing = false;
+    
+    //关闭屏幕长亮
+    this.setKeepScreen(false)
+    //设置屏幕亮度
+    this.setScreenBrightness(0.6)
   },
 
   onHide(){
       this.data.isPageShowing = false;
       // this.setData({isPageShowing: false})
+    //关闭屏幕长亮
+    this.setKeepScreen(false)
+    //设置屏幕亮度
+    this.setScreenBrightness(0.6)
+  },
+    
+  setScreenBrightness(brightness = 0.7){
+      if(my.canIUse('setScreenBrightness')){
+        my.setScreenBrightness({
+            brightness:0.7,
+            success: (res) => {
+                console.log(JSON.stringify(res))
+            },
+            fail: (res) => {
+            },
+        })
+    }else{
+        console.log("你的环境暂不支持此功能----my.setScreenBrightness")
+    }
+  },
+  setKeepScreen(type = true){
+    //设置屏幕常亮
+    if (my.canIUse('setKeepScreenOn')) {
+        my.setKeepScreenOn({
+            keepScreenOn: type,
+        })
+    } else {
+        console.log("你的环境暂不支持此功能----my.setKeepScreenOn")
+    }
   },
   
   showQrImg(){
@@ -60,7 +123,7 @@ Page({
     //       reFresh: true
     //   })
     http('/getUserQRCord').then((result)=>{
-        console.log(result)
+        // console.log(result)
         if(result.responseCode == "000130"){
             //余额不足，请先充值
             my.alert({
@@ -78,7 +141,7 @@ Page({
         }
 
         let str = result.qrCode;
-        console.log(str)
+        // console.log(str)
         str = "data:image/jpg;base64," + str
         
         this.setData({
