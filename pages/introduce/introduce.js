@@ -44,6 +44,7 @@ Page({
     if (my.canIUse('addCardAuth')) {
         my.addCardAuth({ url: getCardUrl,
             success: (res) => {  
+                console.log(res)
                 // my.alert({content: JSON.stringify(res)})
                 //上传auth_code
 //                 {"result":{"app_id":"2017080708077054","auth_code":"90937a4fa28e4dde8ba99469228dOX94",
@@ -92,11 +93,15 @@ Page({
                     })
 
                 }else if(res.resultStatus == "6001"){
-                    my.alert({content: '您取消了'})
+                    my.alert({content: '您取消了授权'})
+                }else{
+                    my.alert({content: '授权失败，请稍后重试'})
                 }         
             },
             fail: (res) => {
-                my.alert({content: '授权失败'}); my.alert({content: JSON.stringify(res)}); alertAndCopy(res);
+                my.alert({content: '授权失败，请稍后重试'}); 
+                // my.alert({content: JSON.stringify(res)}); 
+                // alertAndCopy(res);
             }, 
         });
     } else {
