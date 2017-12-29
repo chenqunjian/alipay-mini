@@ -34,8 +34,9 @@ export function http(url, data, method) {
             fail: (res) => {
                 console.log(res)
                 my.alert({
-                    title: '网络错误',
-                    content: res.errorMessage
+                    // title: '服务器繁忙',
+                    content: '服务器繁忙',
+                    // content: res.errorMessage
                 });
                 my.hideLoading();
                 reject(res)
