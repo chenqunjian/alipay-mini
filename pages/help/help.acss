@@ -1,7 +1,9 @@
 
 .block{
-    margin: 30rpx auto;
-    width: 90%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 5%;
+    margin: 20rpx auto;
 }
 
 .question{
@@ -12,7 +14,9 @@
  
 .answer{
     margin-top: 10rpx;
-    line-height: 40rpx; 
+    line-height: 40rpx;
+    box-sizing: border-box; 
+    padding: 30rpx 0;
 }
 
 .answer-word{

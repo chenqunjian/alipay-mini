@@ -31,10 +31,9 @@
       <image src="/image/cardClose_icon.png" mode="aspectFit" />
       <view>退卡申请</view>
     </view>
-    <view class="menu-item" onTap="clearCache">
-      <!-- <image src="/image/cardClose_icon.png" mode="aspectFit" /> -->
+    <!-- <view class="menu-item" onTap="clearCache">
       <view>清除缓存</view>
-    </view>
+    </view> -->
   </view>
   <view class="use">
     <button type="primary" onTap="use" disabled="{{disableUse.disabledQrcode}}">{{disableUse.buttonText}}</button>

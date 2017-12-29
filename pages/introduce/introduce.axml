@@ -1,28 +1,67 @@
 <!-- 介绍 -->
-<import src="../../component/logo/logo.axml" />
-<template is="logo"/>
+<import src="../../component/card/card.axml" />
 
-<view>
-    <!-- <view class="introduce">
-    <text>长安通公交二维码是西安城市新开通的一种公交地铁乘车方式，使用小程序上的二维码在验票机器上扫一扫，即可方便乘车，先乘车后付费，免去没有领取没带公交卡的烦恼。</text>
+<view class="open-card-header">
+    <image class="open-card-header-img" src="../../image/card-big.png" mode="scaleToFill" />
+</view>
 
+<view class="open-card-body">
+
+    <view class="open-card-body-btn">
+         <button type="primary" onTap="register">立即领卡</button>
     </view>
-    <view class="introduce">
-    <text>开通公交刷码服务，需要先缴纳押金并签约支付宝代扣，并获得一张电子公交卡，乘车时使用该二维码即可。不想使用时，你可以随时申请退卡。</text>
-    </view> -->
+   
+    <view class="open-card-body-protocol">
+        <text>领取卡片并同意</text>
+        <text class="open-card-body-protocol-blue" onTap="agreement">协议</text>
+    </view>
+
+    <view class="open-card-body-desc">
+         <view class="desc-item">
+            <text class="one">一</text>
+            <text class="desc-item-title">先乘车、后付款</text>
+            <text class="one">一</text>
+        </view>
+        <view class="desc-item">
+            <!-- <text class="desc-item-content">无需充值即可使用，从您支付宝账户扣款</text> -->
+        </view>
+    </view>
+    
+</view>
+
+<view class="open-card-footer">
+    <navigator url="/pages/line/line" >开通线路</navigator>
+        <text style="color:#dcdcdc; margin: 0 20rpx;">|</text> 
+    <navigator url="/pages/help/help" >使用帮助</navigator>
+</view>
+<view a:if="{{openCardSuccess}}" class="open-card-mask">
+    <view class="open-card">
+    <image src="/image/card-open-success.png" mode="aspectFit" />
+    <view class="toast-footer">
+        <view><navigator open-type="redirect" url="/pages/index/index">查看卡片</navigator></view>
+        <view>|</view>
+        <view><navigator url="/pages/pay/pay">立即充值</navigator></view> 
+    </view>
+</view>
+</view>
+
+<!-- <view>
     <view class="register">
-        <button type="primary" onTap="register">开通账号</button>
+        <button type="primary" onTap="register">立即领卡</button>
     </view>
     <view class="agreement">
         领取卡片并同意<text onTap="agreement">协议</text>
     </view>
         
-    <view class="slogan">
-        — 先乘车，后付款 —
+    <view class="desc">
+        <view class="desc-item">
+            <text>一</text>
+            <text>先乘车、后付款</text>
+            <text>一</text>
+        </view>
+        <view class="desc-item">无需充值即可使用，从您支付宝账户扣款</view>
     </view>
-    <view class="slogan-content">
-        领卡后，刷码乘车
-    </view>
+
     <view class="footer">
         <navigator url="/pages/line/line" >开通线路</navigator>
         <text style="color:#dcdcdc; margin: 0 10rpx;">|</text> 
@@ -39,5 +78,5 @@
             <view><navigator url="/pages/pay/pay">立即充值</navigator></view> 
         </view>
     </view>
-</view>
+</view> -->
 

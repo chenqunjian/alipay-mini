@@ -1,12 +1,28 @@
 <!-- 开通线路 -->
 
-<view class="index">
-<view a:for="{{lineList}}" a:for-item="item" a:key="id" class="widgets__item">
-    <view class="widgets__info">
-        <text>{{item.number}}</text>
+<view>
+    <view class="open-line-header">
+        <icon type="search" class="icon" />
+        <input type="text" class="input" placeholder="请输入线路名称" onInput="searchLine" />
     </view>
-    <view class="line_memo">
-        <text>{{item.start}}-{{item.end}}</text>
+ 
+    <view style="padding-top:90rpx;"></view>
+
+    <view class="null-img {{ isValue ? 'line-show' : 'line-hide' }}">
+        <image src="../../image/open_line_null.png" mode="aspectFit" />
+        <text>该线路暂未开通,敬请期待</text>
     </view>
-</view>
-</view>
+
+
+    <!--全部线路--> 
+    <view class="line-list" a:for="{{ searchData === '' ? lineList : searchLineData }}" a:for-item="item">
+         <view class="line-list-header">{{ item.number }}</view>
+         <view class="line-list-footer">
+             <view class="line-list-footer-item">{{ item.start }}</view>
+             <image class="line-list-footer-un" src="../../image/arrowdir.png" mode="aspectFit" />
+             <view class="line-list-footer-item">{{ item.end }}</view>
+         <view>
+    </view>
+</view>   
+    
+         

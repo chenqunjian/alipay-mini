@@ -1,5 +1,6 @@
 Page({
   data: {
+    searchData: '',
     lineList:[
       {
         number: '907',
@@ -27,4 +28,22 @@ Page({
   onLoad() {
 
   },
+  searchLine (e) {
+    this.setData({ searchData: e.detail.value })
+    
+    const setData = this.setData
+    const searchData = this.data.searchData
+    const lineList = this.data.lineList
+    const historyLineList = lineList
+    let arr = []
+
+    for (let i = 0; i < lineList.length; i++) {
+       if (lineList[i].number.indexOf(searchData) === 0) {
+            arr.push(lineList[i])
+       }
+    }
+    
+    setData({ searchLineData: arr })
+    this.data.searchLineData.length === 0 ? setData({ isValue: true }) : setData({ isValue: false })
+  }
 });
