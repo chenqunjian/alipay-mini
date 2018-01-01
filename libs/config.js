@@ -1,6 +1,7 @@
 export const serverConfig = {
-    gatewayServer: "http://9kcqzi.natappfree.cc/mini-program-geteway/mini",
-    // gatewayServer: "http://192.168.0.109/mini-program-geteway/mini",
+    gatewayServer: "http://phpr2z.natappfree.cc/mini-program-geteway/mini",
+    // gatewayServer: "http://192.168.0.107/mini-program-geteway/mini",
+    // gatewayServer: "http://changantong.i-xiaoma.cn/mini-program-geteway/mini",
 };
 
 export const getCardUrl = "https://memberprod.alipay.com/account/openform/activecard.htm?app_id=2017122601245171&template_id=20171227000000000719164000300116&__webview_options__=canPullDown%3dNO%26transparentTitle%3dauto"

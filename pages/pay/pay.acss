@@ -99,3 +99,39 @@ page {
   width: 30rpx;
   height: 30rpx;
 }
+
+.agree-model{
+  height: 100%;
+  position: absolute; 
+  width: 100%;
+  left:0;
+  top: 0;
+  z-index: 999;
+  background-color: rgba(89, 93, 105, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.agree-content{
+  background-color: #5da0f5;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  width: 80%;
+  text-indent: 48rpx;
+  font-size: 24rpx;
+  color: #ffffff;
+}
+
+.agree-button{
+  /* text-align: center; */
+  border: 1rpx solid #000000;
+  border-radius: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  /* width: 120rpx; */
+  padding: 0;
+  margin: 30rpx auto;
+}

@@ -2,18 +2,21 @@
   "pages": [
 
     "pages/index/index",
+    "pages/line/line",
+    "pages/pay/pay",
     "pages/introduce/introduce",
+    "pages/help/help",
     "pages/agreement/agreement",
     "pages/register/register",
     "pages/qrcode/qrcode",
-    "pages/pay/pay",
+
     "pages/payResult/payResult",
 
     "pages/payResult/payResult",
     "pages/payRecord/payRecord",
     "pages/payRecordDetail/payRecordDetail",
-    "pages/line/line",
-    "pages/help/help",
+
+
     "pages/account/account",
 
 
