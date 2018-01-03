@@ -14,7 +14,7 @@ page {
 
 .card-header image{
   width: 100%;
-
+  height: 300rpx;
   /* background-size: 100% auto; */
 }
 
@@ -118,20 +118,19 @@ page {
   border-radius: 10rpx;
   padding: 30rpx;
   width: 80%;
-  text-indent: 48rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #ffffff;
 }
 
+.content{
+  text-indent: 48rpx;
+}
+
 .agree-button{
-  /* text-align: center; */
-  border: 1rpx solid #000000;
+  border: 1rpx solid #dcdcdc;
   border-radius: 30rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 30%;
-  /* width: 120rpx; */
-  padding: 0;
+  text-align: center;
+  padding: 10rpx 0;
   margin: 30rpx auto;
 }

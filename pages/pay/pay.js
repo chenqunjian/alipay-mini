@@ -13,6 +13,7 @@ Page({
       {money: 200, checked: 0},
     ],
     // money: 10
+    agreement: false //是否显示用户协议
   },
   onLoad() {
     let userInfo = getUserInfo()
@@ -87,5 +88,15 @@ Page({
          
       })
       
+    },
+    agreementShow(){
+      this.setData({
+        agreement: true
+      })
+    },
+    agreementHide(){
+      this.setData({
+        agreement: false
+      })
     }
 });
