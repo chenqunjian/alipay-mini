@@ -17,15 +17,22 @@ Page({
     let userInfo = getUserInfo()
     console.log(userInfo)
     // my.alert({content: JSON.stringify(userInfo)});
-    if(userInfo == '' || userInfo.customerNo == '' || userInfo.customerNo == undefined || userInfo.customerNo == null){
+    if(userInfo == undefined || userInfo == null || userInfo == '' || userInfo.customerNo == '' || userInfo.customerNo == undefined || userInfo.customerNo == null){
       my.redirectTo({
         url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
-      }) 
+      })
+      return 
     }
     this.setData({
       cardNo: userInfo.cardNo
     })
     this.getCardStatus()
+  },
+  onUnload(){
+    my.hideToast()
+  },
+  onHide(){
+    my.hideToast()
   },
   /**
    *  获取卡信息
