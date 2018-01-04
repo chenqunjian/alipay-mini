@@ -1,5 +1,5 @@
 export const serverConfig = {
-    gatewayServer: "http://phpr2z.natappfree.cc/mini-program-geteway/mini",
+    gatewayServer: "http://changantong.i-xiaoma.cn:8080/mini-program-gateway/mini",
     // gatewayServer: "http://192.168.0.107/mini-program-geteway/mini",
     // gatewayServer: "http://changantong.i-xiaoma.cn/mini-program-geteway/mini",
 };
