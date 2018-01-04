@@ -1,13 +1,15 @@
 
 import {http} from '../../libs/http' 
-const reFreshTimeLimit = 50 //刷新间隔时间 秒
+// const reFreshTimeLimit = 50 //刷新间隔时间 秒
 Page({
   data: {
     qrcodeStr: "",
     isQrShow: false,
     isPageShowing: true,
     reFresh: false,
-    reFreshTime: 0
+    reFreshTime: 0,
+    reFreshTimeLimit: 0,   //刷新间隔时间 秒 
+    qrcodeExpired: false
   },
   onLoad() {
     // my.showLoading({
@@ -70,6 +72,9 @@ Page({
     this.setKeepScreen(false)
     //设置屏幕亮度
     this.setScreenBrightness(0.6)
+    //取消监听截屏事件
+    my.offUserCaptureScreen()
+    my.hideToast()
   },
 
   onHide(){
@@ -79,6 +84,9 @@ Page({
     this.setKeepScreen(false)
     //设置屏幕亮度
     this.setScreenBrightness(0.6)
+    //取消监听截屏事件
+    my.offUserCaptureScreen()
+    my.hideToast()
   },
     
   setScreenBrightness(brightness = 0.7){
@@ -110,9 +118,10 @@ Page({
     //刷新时间
     let time = Math.round(new Date()/ 1000)
     let waitTime = time - this.data.reFreshTime
-    if(waitTime <  reFreshTimeLimit){
+    if(waitTime <  this.data.reFreshTimeLimit){
         my.showToast({
-          content: `请等待${reFreshTimeLimit - waitTime}秒后操作`
+          content: `请等待${reFreshTimeLimit - waitTime}秒后操作`,
+          duration: 1000,
         })
         return
     }
@@ -129,11 +138,25 @@ Page({
             my.alert({
                 content: '余额不足，请先充值',
                 success: ()=>{
-                    my.navigateTo({
+                    my.redirectTo({
                         url: '/pages/pay/pay'
                     });
                 }
             }) 
+            return
+        }
+        else if(result.responseCode == "100000"){
+            // my.showToast({
+            //   content: '卡号为空', // 文字内容              
+            // })
+            // setTimeout(() => {
+            //     my.redirectTo({
+            //         url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
+            //     })
+            // }, 1000);
+            my.redirectTo({
+                url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
+            })
         }
         else if(result.responseCode !== "000000"){
             my.alert({content: result.responseDesc}) 
@@ -141,14 +164,23 @@ Page({
         }
 
         let str = result.qrCode;
+        let reFreshTimeLimit = result.timeout || 30
         // console.log(str)
         str = "data:image/jpg;base64," + str
         
         this.setData({
             qrcodeStr: str,
             reFresh: false,
-            reFreshTime: time
+            reFreshTime: time,
+            qrcodeExpired: false,
+            reFreshTimeLimit
         })
+
+        setTimeout(() => {
+            this.setData({
+                qrcodeExpired: true
+            })
+        }, reFreshTimeLimit);        
     })
   },
 

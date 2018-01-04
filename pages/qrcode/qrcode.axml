@@ -22,6 +22,14 @@
           正在刷新……
         </view>
       </view>
+      <view class="qrcode-mark" a:if="{{qrcodeExpired}}" onTap="showQrImg">
+        <view>
+          <image src="/image/refresh-big.png" mode="scaleToFill"/>
+        </view>
+        <view class="qrcode-mark-tips">
+          二维码已过期，点击刷新
+        </view>
+      </view>
     </view>
     <view>
 
