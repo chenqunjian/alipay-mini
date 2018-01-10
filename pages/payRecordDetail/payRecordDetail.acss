@@ -1,6 +1,8 @@
 .page{
     background-color: #ffffff;
     padding-bottom: 0;
+    margin: 0 auto;
+    width: 90%;
 }
 .header{
     height: 339rpx;

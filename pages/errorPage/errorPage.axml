@@ -1,0 +1,8 @@
+<view>
+  <view class="error-image">
+    <image src="/image/open_card_end_busy.png" mode="aspectFit" />
+  </view>
+  <view class="tips">
+    {{tips}}
+  </view>
+</view>

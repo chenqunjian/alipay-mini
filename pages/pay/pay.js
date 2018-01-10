@@ -1,40 +1,30 @@
 import {http} from '../../libs/http'
 import {getUserInfo} from '../../libs/utils'
 
+const { globalData } = getApp()
+
 Page({
   data: {
     cardNo:"",
-    payList: [
-      {money: 10, checked: 1},
-      {money: 20, checked: 0},
-      {money: 30, checked: 0},
-      {money: 50, checked: 0},
-      {money: 100, checked: 0},
-      {money: 200, checked: 0},
-    ],
-    // money: 10
-    agreement: false //是否显示用户协议
+    rechargeList: null,
+    rechargeIndex: null,
+    rechargeProtocol: null,
+    protocolVisible: false,
   },
   onLoad() {
     let userInfo = getUserInfo()
     this.setData({
-      cardNo: userInfo.cardNo
+      cardNo: userInfo.cardNo,
+      rechargeList: globalData.rechargeList,
+      rechargeProtocol: globalData.rechargeProtocol
     })
   },
-  pay(e){
-      let amount = e.target.dataset.money;
+  pay({ target }){
+      let index = target.dataset.index
+      let amount = target.dataset.item.value
       console.log('select money:' + amount);
-      let payList = this.data.payList;
-      for (let index = 0; index < payList.length; index++) {
-          
-          if(amount == payList[index]['money']){
-              payList[index]['checked'] = 1;
-          }else{
-              payList[index]['checked'] = 0;
-          }
-      }
       this.setData({
-          payList
+          rechargeIndex: index
       })
       // amount *= 100
       amount /= 10
@@ -54,9 +44,15 @@ Page({
         my.tradePay({
           orderStr: orderStr, // 完整的支付参数拼接成的字符串，从服务端获取
           success: (res) => {
+            this.setData({
+              rechargeIndex: null
+            })
             console.log("res:", res);
             if(res.resultCode == 9000){
-                my.showToast({content: '支付成功'})
+                // my.showToast({
+                //   content: '充值成功',
+                //   duration: 1000
+                // })
                 //支付成功
                 setTimeout(()=> {
                   my.redirectTo({
@@ -65,23 +61,34 @@ Page({
                 }, 1000);  
             }
             else if(res.resultCode == 8000){
-              my.alert({content: "订单处理中，请稍后查看"})
+              my.showLoading({
+                delay: 1000
+              })
+              // my.alert({content: "订单处理中，请稍后查看"})
                 // alert("订单处理中，请稍后查看");
-                // my.switchTab({
-                //     url: '/page/qrshow/qrshow', // 需要跳转的 tabBar 页面的路径（需在 app.json 的 tabBar 字段定义的页面），路径后不能带参数
-                // });
             }
             else if(res.resultCode == 4000){
-              my.alert({content: "订单处理中，请稍后查看"})
+              // 订单支付失败
+              my.showToast({
+                content: '充值失败，请稍后重试',
+                duration: 1000
+              })
             }
             else if(res.resultCode == 6001){
-              my.alert({content: "订单处理中，请稍后查看"})
+              // my.alert({content: "您取消了支付"})
             }
             else if(res.resultCode == 6002){
-              my.alert({content: "网络连接出错"})
+              // 网络连接出错
+              my.showToast({
+                content: '系统繁忙，请稍后重试' ,
+                duration: 1000
+              })
             }
             else {
-              my.alert({content: "支付失败，请稍后重试"})
+              my.showToast({
+                content: '充值失败，请稍后重试',
+                duration: 1000 
+              })
             }
           },
         })
@@ -89,14 +96,14 @@ Page({
       })
       
     },
-    agreementShow(){
-      this.setData({
-        agreement: true
-      })
+    toggleProtocol () {
+        this.setData({
+            protocolVisible: !this.data.protocolVisible
+        })
     },
-    agreementHide(){
-      this.setData({
-        agreement: false
-      })
+    linkRechargeLog () {
+        my.navigateTo({
+          url: '/pages/payRecord/payRecord'
+        });
     }
 });

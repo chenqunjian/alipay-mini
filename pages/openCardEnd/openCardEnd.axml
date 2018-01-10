@@ -1,0 +1,16 @@
+<view>
+  
+  <view>
+    <view class="open-card-end-busy {{ error ? 'show' : 'hide' }}">
+      <view class="busy-image">
+        <image src="/image/open_card_end_busy.png" mode="aspectFit" />
+      </view>
+      <view class="tips">
+        {{tips}}
+      </view>
+    </view>
+  </view>
+  <view class="card-loading {{ !error ? 'show' : 'hide' }}">
+    <image src="/image/card-loading.png" mode="aspectFit" />
+  </view>
+</view>

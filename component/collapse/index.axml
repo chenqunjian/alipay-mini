@@ -1,0 +1,18 @@
+<template name="Collapse">
+  <view class="a-collapse">
+    <view a:for={{panels}}>
+      <view
+        class="a-collapse-title"
+        onTap="{{onTitleTap}}"
+        data-index={{index}}
+      >
+        {{item.question}}
+        <view class="{{item.expanded ? 'a-collapse-title-arrow a-collapse-title-arrow-up' : 'a-collapse-title-arrow'}}" />
+      </view>
+      <view class="a-collapse-content" a:if={{item.expanded}}>
+        <text style="color:#63bc56;font-weight: 700; width: 6%;">答：</text>
+        <text style="width: 94%;">{{item.answer}}</text>
+      </view>
+    </view>
+  </view>
+</template>

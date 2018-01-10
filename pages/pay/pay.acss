@@ -1,136 +1,126 @@
-
-page {
-  background-color: #fff;
+page{
+    padding-top: 30rpx;
+    box-sizing: border-box;
 }
 
-.card-header{
-  position: relative;
+.recharge-header{
+    width: 92%;
+    height: 220rpx;
+    background: url(https://xm-cdn.oss-cn-hangzhou.aliyuncs.com/img/traffic_card/wh_recharge_header_bg.png) no-repeat;
+    background-size: 100% 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    /* margin-top: 30rpx; */
+    display: flex;
+    flex: row;
+    align-items: center;
+    color: #fff;
 }
 
-/* .card-header image{
-  width: 100%;
-  height: 100%;
-} */
-
-.card-header image{
-  width: 100%;
-  height: 300rpx;
-  /* background-size: 100% auto; */
+.recharge-header view{
+    width: 80%;
+    overflow: hidden;
+    color: #fff;
+    padding-top: 30rpx;
 }
 
-.card-number{
-  position: absolute;
-  top:20rpx;
-  left: 15rpx;
-  color: #ffffff;
-  font-size: 40rpx;
+.recharge-list{
+    width: 92%;
+    margin: 0 auto;
 }
 
-.title{
-  margin: 30rpx 0 10rpx;
-  font-size: 30rpx;
+.recharge-list-item{
+    display: inline-block;
+    width: 32%;
+    box-sizing: border-box;
+    border: 1px solid #108ee9;
+    margin-bottom: 20rpx; 
+    text-align: center;
+    position: relative;
+    padding: 5rpx 0;
+    border-radius: 10rpx;
 }
 
-.pay{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.recharge-list-item:nth-child(3n - 1) {
+    margin: 0 2%;
 }
 
-.pay-button{
-  border: 2rpx solid #108EE9;
-  border-radius: 10rpx;
-  width: 28%;
-  /* height: 100rpx; */
-  margin: 20rpx 9rpx 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.recharge-list-item view {
+    margin: 20rpx 0;
 }
 
-.pay-type{
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  padding: 30rpx 0;
-  /* color: #108EE9; */
+.recharge-list-item .label{
+    color: #108ee9;
+    font-size: 36rpx;
+}
+.recharge-list-item .value{
+    color: #82cbfe;
+    font-size: 26rpx;
 }
 
-.money{
-  margin-bottom: 20rpx;
-  font-size: 34rpx;
+.active {
+    background: #108ee9
+}
+.active .label, .active .value {
+    color: #fff;
 }
 
-.checked{
-  background-color: #108ee9;
+.recharge-footer{
+    width: 100%;
+    position: fixed;
+    left: 0;
+    text-align: center;
+    bottom: 0;
 }
 
-.uncheck{
-  background-color: #ffffff;
+.recharge-footer-item{
+    color: #108ee9;
+    padding-bottom: 35rpx;
+}
+.recharge-footer-item text {
+    font-size: 26rpx;
 }
 
-.footer{
-  /* position: absolute; */
-  /* bottom: 60rpx; */
-  /* left: 45%; */
-  left: 0;
-  text-align: center;
-  font-size: 34rpx;
-  position: absolute; 
-  bottom: 30rpx; 
-  width: 100%;
-  /* background-color: #ffc0cb; */
+/*alert*/
+.recharge-alert{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 500;
 }
 
-
-
-.agree{
-  font-size: 30rpx;
-  margin-top: 24rpx;
-  color: #999999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.recharge-alert-info{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 90%;
+    /* background: #459eff; */
+    background: #fff;
+    color: #000000;
+    box-sizing: border-box;
+    border-radius: 5rpx;
+    padding: 10rpx 25rpx;
+}
+.recharge-alert-info text{
+    display: block;
+    /* color: #fff; */
+    font-size: 26rpx;
+    line-height: 1.8;
 }
 
-
-.agree image{
-  width: 30rpx;
-  height: 30rpx;
-}
-
-.agree-model{
-  height: 100%;
-  position: absolute; 
-  width: 100%;
-  left:0;
-  top: 0;
-  z-index: 999;
-  background-color: rgba(89, 93, 105, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.agree-content{
-  background-color: #5da0f5;
-  border-radius: 10rpx;
-  padding: 30rpx;
-  width: 80%;
-  font-size: 28rpx;
-  color: #ffffff;
-}
-
-.content{
-  text-indent: 48rpx;
-}
-
-.agree-button{
-  border: 1rpx solid #dcdcdc;
-  border-radius: 30rpx;
-  width: 30%;
-  text-align: center;
-  padding: 10rpx 0;
-  margin: 30rpx auto;
+.recharge-alert-info view{
+    background: transparent;
+    /* color: #fff; */
+    width: 200rpx;
+    margin: 0 auto;
+    text-align: center;
+    /* border: 1px solid #ffffff; */
+    border: 1px solid #000000;
+    padding: 10rpx 0;
+    border-radius: 150rpx;
+    margin-top: 20rpx;
 }

@@ -7,19 +7,9 @@ Page({
     pageSize: 10,
     hasNextPage: true,
     isLoading: false, //正在请求接口
-    recordList:[
-      // {
-      //   money: 1.50,
-      //   line: 506,
-      //   date: '12-11 12:12'
-      // },
-      // {
-      //   money: 1.50,
-      //   line: 506,
-      //   date: '12-12 12:12'
-      // },
-
-    ]
+    loading: false, // 实现显示加载中
+    recordList:[],
+    visible: false  //是否显示页面
   },
   // onLoad() {
   //   this.sortRecord()
@@ -34,10 +24,14 @@ Page({
       return
     }
     this.setData({
-      isLoading: true
+      isLoading: true,
+      loading: true
     })
     if (this.data.hasNextPage) {
-      my.showToast({content: '加载下一页...'})
+      my.showToast({
+        content: '加载下一页...',
+        duration: 1000
+      })
       this.requestList();
     }
   },
@@ -48,11 +42,15 @@ Page({
       page
     }
     http(url, data, 'POST').then((res)=>{
+      this.setData({
+        visible: true
+      })
       if(res.responseCode != "000000"){
         return
       }
 
       let recordList = this.data.recordList
+
       let resList = this.formatRecord(res.resList)
       console.log(resList)
       if(page == 1){
@@ -74,7 +72,7 @@ Page({
         isLoading: false,
         page,
         recordList,
-        hasNextPage
+        hasNextPage,
       })
 
       this.sortRecord()
@@ -93,40 +91,54 @@ Page({
   //   })
 
   // },
+  // formatRecord(recordListIn){
+  //   let recordList = [], recordListOut=[], recordInfo = {}
+  //   let month = ''
+  //   let find = 0;
+
+  //   recordListIn.forEach((element) => {
+  //     let transamt = formatMoney(element.transamt)
+  //     recordInfo = {}
+  //     recordInfo.transamt = transamt  //金额
+  //     recordInfo.transtime = element.transtime  //日期
+
+  //     month = recordInfo.transtime.substring(5, 7)
+  //     console.log(month)
+      
+  //     find = 0;
+  //     recordListOut.forEach((item, key)=>{
+  //       if(item.month == month){
+  //         recordListOut[key]['recordInfo'].push(recordInfo)
+  //         find = 1;
+  //       }
+  //     })
+  //     if(find == 0){
+  //       recordListOut.push({
+  //         'month': month,
+  //         'recordInfo':[
+  //           recordInfo
+  //         ]
+  //       })
+  //     }
+      
+  //   })
+  //   console.log(recordListOut)
+  //   return recordListOut
+
+  // },
   formatRecord(recordListIn){
-    let recordList = [], recordListOut=[], recordInfo = {}
-    let month = ''
-    let find = 0;
-
-    recordListIn.forEach((element) => {
-      let transamt = formatMoney(element.transamt)
+    let recordInfo = {},recordListOut = []
+    recordListIn.forEach((element)=>{
       recordInfo = {}
-      recordInfo.transamt = transamt  //金额
-      recordInfo.transtime = element.transtime  //日期
+      let transamt = formatMoney(element.transamt)
+      recordInfo.transamt = transamt    //金额
+      recordInfo.transtime = element.transtime //交易时间
+      recordInfo.transseq = element.transseq //订单号
 
-      month = recordInfo.transtime.substring(5, 7)
-      console.log(month)
-      
-      find = 0;
-      recordListOut.forEach((item, key)=>{
-        if(item.month == month){
-          recordListOut[key]['recordInfo'].push(recordInfo)
-          find = 1;
-        }
-      })
-      if(find == 0){
-        recordListOut.push({
-          'month': month,
-          'recordInfo':[
-            recordInfo
-          ]
-        })
-      }
-      
+      recordListOut.push(recordInfo)
+
     })
-    console.log(recordListOut)
     return recordListOut
-
   },
   sortRecord(){
     let recordList = this.data.recordList

@@ -1,82 +1,35 @@
-<!-- 介绍 -->
-<import src="../../component/card/card.axml" />
+<view class="item open-card">
 
-<view class="open-card-header">
-    <image class="open-card-header-img" src="../../image/card-big.png" mode="scaleToFill" />
-</view>
-
-<view class="open-card-body">
-
-    <view class="open-card-body-btn">
-         <button type="primary" onTap="register">立即领卡</button>
-    </view>
-   
-    <view class="open-card-body-protocol">
-        <text>领取卡片并同意</text>
-        <text class="open-card-body-protocol-blue" onTap="agreement">协议</text>
-    </view>
-
-    <view class="open-card-body-desc">
-         <view class="desc-item">
-            <text class="one">一</text>
-            <text class="desc-item-title">先乘车、后付款</text>
-            <text class="one">一</text>
-        </view>
-        <view class="desc-item">
-            <!-- <text class="desc-item-content">无需充值即可使用，从您支付宝账户扣款</text> -->
+    <view class="card-info">
+        <view class="card-info-img">
+            <image class="card-img" src="{{ cardImage }}" mode="scaleToFill" />
         </view>
     </view>
-    
-</view>
 
-<view class="open-card-footer">
-    <navigator url="/pages/line/line" >开通线路</navigator>
-        <text style="color:#dcdcdc; margin: 0 20rpx;">|</text> 
-    <navigator url="/pages/help/help" >使用帮助</navigator>
-</view>
-<view a:if="{{openCardSuccess}}" class="open-card-mask">
-    <view class="open-card">
-    <image src="/image/card-open-success.png" mode="aspectFit" />
-    <view class="toast-footer">
-        <view><navigator open-type="redirect" url="/pages/index/index">查看卡片</navigator></view>
-        <view>|</view>
-        <view><navigator url="/pages/pay/pay">立即充值</navigator></view> 
+    <view class="card-btn" onTap="register">
+        <button type="primary" class="normal-button">立即领卡</button>
     </view>
-</view>
-</view>
 
-<!-- <view>
-    <view class="register">
-        <button type="primary" onTap="register">立即领卡</button>
+    <view class="card-protocol">
+        领取卡片并且同意
+        <navigator url="/pages/agreement/agreement" redirect style="display: inline-block;">
+             <text style="color: #3ab5e6; padding-left: 10rpx;">协议</text>
+        </navigator>
     </view>
-    <view class="agreement">
-        领取卡片并同意<text onTap="agreement">协议</text>
-    </view>
-        
-    <view class="desc">
-        <view class="desc-item">
-            <text>一</text>
-            <text>先乘车、后付款</text>
-            <text>一</text>
+
+    <view class="card-desc" a:for="{{ cardDescList }}" a:for-item="item">
+        <view class="card-desc-header">
+            <text class="card-desc-header-un">一</text>
+            <text>{{ item.header }}</text>
+            <text class="card-desc-header-un">一</text>
         </view>
-        <view class="desc-item">无需充值即可使用，从您支付宝账户扣款</view>
-    </view>
-
-    <view class="footer">
-        <navigator url="/pages/line/line" >开通线路</navigator>
-        <text style="color:#dcdcdc; margin: 0 10rpx;">|</text> 
-        <navigator url="/pages/help/help" >使用帮助</navigator>
-    </view>
-    <view a:if="{{showCardLoading}}" class="toast-show">
-        <image src="/image/card-loading.png" mode="aspectFit" />
-    </view>
-    <view a:if="{{openCardSuccess}}" class="open-card">
-        <image src="/image/card-open-success.png" mode="aspectFit" />
-        <view class="toast-footer">
-            <view><navigator open-type="redirect" url="/pages/index/index">查看卡片</navigator></view>
-            <view>|</view>
-            <view><navigator url="/pages/pay/pay">立即充值</navigator></view> 
+        <view class="card-desc-footer">
+            {{ item.footer }}
         </view>
     </view>
-</view> -->
 
+    <view class="open-card-footer">
+        该服务由{{cardName}}提供
+    </view>
+
+</view>

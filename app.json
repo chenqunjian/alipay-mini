@@ -3,30 +3,29 @@
 
     "pages/index/index",
     "pages/line/line",
-    "pages/pay/pay",
+    "pages/qrcode/qrcode",
     "pages/introduce/introduce",
+    "pages/openCardEnd/openCardEnd",
     "pages/help/help",
     "pages/agreement/agreement",
     "pages/register/register",
-    "pages/qrcode/qrcode",
 
     "pages/payResult/payResult",
-
-    "pages/payResult/payResult",
+    "pages/pay/pay",
+    "pages/busRecord/busRecord",
     "pages/payRecord/payRecord",
     "pages/payRecordDetail/payRecordDetail",
 
 
     "pages/account/account",
+    "pages/errorPage/errorPage",
 
-
-    "pages/busRecord/busRecord",
     "pages/returnCard/returnCard"
 
 
 
   ],
   "window": {
-    "defaultTitle": "长安通乘车码"
+    "defaultTitle": "长安通电子卡"
   }
 }

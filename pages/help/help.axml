@@ -1,11 +1,5 @@
-<view>
-  <view class="block" a:for="{{helpList}}" a:for-item="item" a:for-index="key">
-    <view class="question">
-      {{key + 1}}、 {{item.question}}
-    </view>
-    <view class="answer">
-      <text class="answer-word">答：</text>
-      <text>{{item.answer}}</text>
-    </view>
-  </view>
-</view>
+<import src="../../component/collapse/index.axml" />
+
+<view class="item">
+    <template is="Collapse" data={{...helpData}} />
+</view>   

@@ -1,14 +1,17 @@
-<view class="page">
-  <view class="logo">
-    <image src="https://t.alipayobjects.com/images/rmsweb/T1B8lgXi4iXXXXXXXX.png" mode="aspectFit" />
-  </view>
-  <view class="status">
-    充值成功
-  </view>
-  <view class="money">
-    {{money}}元
-  </view>
-  <view>
-    <button type="primary" onTap="back" >返回</button>
-  </view>
+<view class="item">
+    
+    <view class="header">
+        <image src="https://t.alipayobjects.com/images/rmsweb/T1B8lgXi4iXXXXXXXX.png" mode="scaleToFill" />
+    </view>
+
+    <view class="body">
+        <view class="body-item" style="color: #2c83e8;">{{ payStatusLabel }}</view>
+        <view class="body-item amount">{{ money }}元</view>
+        <view class="body-item tip">{{ tip }}</view>
+    </view>
+
+    <view class="footer">
+        <button class="normal-button" type="primary" onTap="back">完成</button>
+    </view>
+
 </view>

@@ -1,19 +1,19 @@
-<view class="page">
+<view>
   <view class="qrcode">
     <view class="header">
       <view class="logo">
         <image src="/image/changantong-logo.jpg" mode="aspectFill" />
       </view>
-      <text>长安通乘车码</text>
+      <text>长安通电子卡</text>
     </view>
     <view class="content">
       <view class="qrcode-image" onTap="showQrImg">
-        <image src="{{qrcodeStr}}" mode="aspectFill" />
+        <image src="{{qrcodeStr}}" mode="aspectFit" />
         <!-- <image src="/image/qrcode.png" mode="aspectFill" /> -->
       </view>
       <view class="tips">
         <view>
-          <image src="/image/refresh.png" mode="aspectFill"/>
+          <!-- <image src="/image/refresh.png" mode="aspectFill"/> -->
         </view>
         <view a:if={{!reFresh}}>
           如刷码失败，请点击二维码<text onTap="showQrImg">刷新</text>
@@ -22,8 +22,19 @@
           正在刷新……
         </view>
       </view>
+      <view class="warning {{errorInfo.errorShow ? 'show' : 'hide'}}">
+        <view class="warning-image">
+          <image src="/image/icon_warning.png" mode="aspectFit"/>
+        </view>
+        <view class="warning-content">
+          <view>{{errorInfo.errorMsg}}</view>
+          <button type="primary" class="normal-button" onTap="errorHandle">{{errorInfo.button}}</button>
+        </view>
+      </view>
+
+      <!-- 二维码过期 -->
       <view class="qrcode-mark" a:if="{{qrcodeExpired}}" onTap="showQrImg">
-        <view>
+        <view class="qrcode-refresh">
           <image src="/image/refresh-big.png" mode="scaleToFill"/>
         </view>
         <view class="qrcode-mark-tips">

@@ -1,7 +1,7 @@
 import {saveUserInfo, getUserInfo} from '../../libs/utils'
 import {http} from '../../libs/http'
 
-let app = getApp()
+const { globalData } = getApp()
 Page({
   data: {
     cardNo: "",
@@ -9,11 +9,21 @@ Page({
     disableUse:{
       buttonText: '立即使用',
       disabledQrcode: false
-    }
-
+    },
+    openCardSuccess: false,
+    cardImage: null,
+    menuList: null,
   },
-  onLoad() {
-
+  onLoad(query) {
+    console.log(query)
+    let openCardSuccess = false
+    if(query.openCardSuccess){
+      // openCardSuccess = true
+      my.showToast({
+        content: '开通成功', // 文字内容,
+        delay: 1000,
+      })
+    }
     let userInfo = getUserInfo()
     console.log(userInfo)
     // my.alert({content: JSON.stringify(userInfo)});
@@ -24,15 +34,25 @@ Page({
       return 
     }
     this.setData({
-      cardNo: userInfo.cardNo
+      cardNo: userInfo.cardNo,
+      // openCardSuccess,
+      cardImage: globalData.cardImage,
+      menuList: globalData.menuList
     })
+
     this.getCardStatus()
   },
   onUnload(){
-    my.hideToast()
+    this.setData({
+      openCardSuccess: false
+    })
+    // my.hideToast()
   },
   onHide(){
-    my.hideToast()
+    this.setData({
+      openCardSuccess: false
+    })
+    // my.hideToast()
   },
   /**
    *  获取卡信息
@@ -44,7 +64,7 @@ Page({
    */
   getCardStatus(){
     http('/getBizTkCardStatus').then((result)=>{
-      console.log(result)
+      console.log(JSON.stringify(result))
       if(result.responseCode == "100000" || result.responseCode == "300000"){
         //卡信息不存在或卡注销已退款
         let userInfo = {
@@ -58,10 +78,10 @@ Page({
         }) 
       }else if(result.responseCode == "200000"){
         //卡注销未退款
-        app.globalData.cardReturning = true
+        globalData.cardReturning = true
         
         let disableUse = {
-          buttonText: '正在退款中',
+          buttonText: '退卡审核中',
           disabledQrcode: true
         }
 
@@ -69,44 +89,31 @@ Page({
           cardReturning: 1,
           disableUse
         })
+      }else if(result.responseCode == "000000"){
+          //清除全局变量
+          globalData.cardReturning = false
       }
- 
     })
   },
-  clearCache(){
-    let userInfo = {
-      customerNo: '',
-      cardNo: ''
-    }
-    saveUserInfo(userInfo)
+  // clearCache(){
+  //   let userInfo = {
+  //     customerNo: '',
+  //     cardNo: ''
+  //   }
+  //   saveUserInfo(userInfo)
 
-    my.showToast({content: '清除成功'})
-    my.navigateTo({
-      url: '/pages/introduce/introduce'
-    });
-  },
-  develop(){
-    my.showToast({content: '建设中'})
-  },
-  /** 
-   * 跳转到二维码界面
-  */
-  use(){
-    my.navigateTo({
-      url: '/pages/qrcode/qrcode'
-    });
-  },
-   /** 
-   * 账户
-  */
-  account(){
-    my.navigateTo({
-      url: '/pages/account/account'
-    })
-  },
+  //   my.showToast({content: '清除成功'})
+  //   my.navigateTo({
+  //     url: '/pages/introduce/introduce'
+  //   });
+  // },
+  
   pay(){
-    if(app.globalData.cardReturning){
-      my.showToast({content: '正在申请退款中'})
+    if(globalData.cardReturning){
+      my.showToast({
+        content: '正在申请退款中',
+        duration: 1000,
+      })
       return
     }
 
@@ -114,9 +121,39 @@ Page({
       url: '/pages/pay/pay'
     })
   },
-  busRecord(){
+  linkTo ({ target }) { // 菜单的路由跳转
+      const { label, path } = target.dataset.item
+      // 充值跳转前需要做的拦截
+      if (path === 'pay') {
+          this.pay()
+          return false
+      }
+      //账户余额
+      if (path === 'account') {
+          this.account()
+          return false
+      }  
+      // 退卡跳转前需要做的拦截
+      if (path === 'returnCard') {
+          this.returnCard()
+          return false
+      }
+      // 其他跳转
+      my.navigateTo({
+        url: `/pages/${path}/${path}`
+      });
+  },
+  account(){
+    if(globalData.cardReturning){
+      my.showToast({
+        content: '正在申请退款中',
+        duration: 1000,
+      })
+      return
+    }
+
     my.navigateTo({
-      url: '/pages/busRecord/busRecord'
+      url: '/pages/account/account'
     })
   },
   returnCard(){
@@ -137,7 +174,7 @@ Page({
     else{
     //退卡
       my.confirm({
-        content: '退卡后您将不能再享受手机乘公交的便捷服务',
+        content: '退卡后您将无法使用手机刷码乘车服务，7日后卡内余额将退还到您支付宝账户',
         confirmButtonText: '残忍退卡',
         cancelButtonText: '我再想想',
         success: (result) => {
@@ -149,10 +186,10 @@ Page({
                   my.alert({content: result.responseDesc}) 
                   return
                 }
-                app.globalData.cardReturning = true
+                globalData.cardReturning = true
         
                 let disableUse = {
-                  buttonText: '正在退款中',
+                  buttonText: '退卡审核中',
                   disabledQrcode: true
                 }
 
@@ -169,7 +206,27 @@ Page({
         },
       })
     }
-  }
-
+  },
+  toggleSuccessAlert () {
+      this.setData({
+          openCardSuccess: false
+      })
+    },
+  linkBusCode(){
+    this.setData({
+      openCardSuccess: false
+    })
+    my.navigateTo({
+      url: '/pages/qrcode/qrcode'
+    });  
+  },
+  /** 
+   * 跳转到二维码界面
+  */
+  use(){
+    my.navigateTo({
+      url: '/pages/qrcode/qrcode'
+    });
+  },
 
 });

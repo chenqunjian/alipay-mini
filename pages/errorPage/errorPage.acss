@@ -1,0 +1,16 @@
+
+
+.error-image{
+    padding-top: 300rpx;
+    margin: 0 auto 30rpx;
+}
+ 
+.error-image image{
+    width: 100%;
+}
+
+.tips{
+    font-size: 30rpx;
+    color: #333333;
+    text-align: center;
+}

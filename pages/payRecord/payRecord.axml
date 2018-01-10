@@ -1,4 +1,27 @@
-<view>
+<view class="item {{ visible ? 'show' : 'hide' }}">
+
+  <view class="log-list {{ recordList.length == 0  ? 'hide' : 'show' }}">
+      <view class="log-list-item" a:for="{{ recordList }}" a:for-item="item" onTap="showDetail" data-record={{item}}>
+          <view class="label" style="text-align: left;">
+              <view class="header">充值</view>
+              <view class="footer"></view>
+          </view>
+          <view class="label" style="text-align: right;">
+              <view class="header">+{{ item.transamt }}元</view>
+              <view class="footer">{{ item.transtime }}</view>
+          </view>
+      </view>
+      <view class="log-loading {{ loading ? 'show' : 'hide' }}">加载中...</view> 
+  </view>
+  
+    <view class="null {{ recordList.length == 0 ? 'show' : 'hide' }}">
+      <image src="https://xm-cdn.oss-cn-hangzhou.aliyuncs.com/img/traffic_card/recharge_log_null.png" mode="scaleToFill" />
+      <view>暂无充值记录</view>
+  </view>
+
+<view>    
+
+<!-- <view>
   <block a:if="{{recordList.length}}">
     <view a:for="{{recordList}}" a:for-item="item" class="record" >
         <view class="record-info" data-record={{item}} onTap="showDetail">
@@ -16,29 +39,5 @@
   <block a:else>
     <import src="../../component/empty/empty.axml"/>
     <template is="empty" data="{{text: '暂无充值记录'}}"/>
-  </block>
-</view>
-
-<!-- <view>
-  <block a:if="{{recordList.length}}">
-    <view a:for="{{recordList}}" a:for-item="item" a:key="{{item.month}}">
-      <view class="month">{{item.month}}月</view>
-      <view a:for="{{item.recordInfo}}" a:for-item="info" class="record">
-        <view class="record-info">
-          <view class="row">
-            <text class="title">充值</text>
-            <text class="money">-{{info.money}}</text>
-          </view>
-          <view class="row date">
-            <text>{{info.date}}</text>
-            <text></text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </block>
-  <block a:else>
-    <import src="../../component/empty/empty.axml"/>
-    <template is="empty" data="{{text: '暂时没有充值订单'}}"/>
   </block>
 </view> -->

@@ -1,17 +1,38 @@
-.page{
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+page{
+    background: rgba(96,96,96, 0.1);
 }
 
-.return-title{
-    margin: 25rpx 0 18rpx;
-    font-size: 34rpx;
+.card-close-header{
+    width: 100%;
+    background: #fff;
+    text-align: center;
+    padding: 50rpx 0 0 0;
+}
+.card-close-header image{
+    width: 160rpx;
+    height: 160rpx;
 }
 
-.return-info{
-    font-size: 30rpx;
-    color: #888888;
+.card-close-body{
+    width: 100%;
+    background: #fff;
+    text-align: center;
+    padding: 0 0 40rpx 0;
+}
+
+.card-close-body-item {
+    padding: 10rpx 0 0 0;
+}
+
+
+.card-close-footer{
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 20rpx;
+    border-top: 1px solid #a1a1a1;
+}
+
+.card-close-footer button{
+    width: 92%;
+    margin: 0 auto;
 }

@@ -1,0 +1,25 @@
+
+.busy-image{
+    padding-top: 300rpx;
+    margin: 0 auto 30rpx;
+}
+
+.busy-image image{
+    width: 100%;
+}
+
+.tips{
+    font-size: 30rpx;
+    color: #333333;
+    text-align: center;
+}
+
+.card-loading{
+    width: 30%;
+    padding-top: 300rpx;
+    margin: 0 auto 0;
+}
+
+.card-loading image{
+    width: 100%;
+}

@@ -1,25 +1,43 @@
-.page{
-    background-color: #ffffff;
+page{
+    background: rgba(0, 0, 0, 0.1);
 }
 
-.logo{
-    margin: 40rpx auto;
-    width: 200rpx;
-    height: 200rpx;
-}
-
-.logo image{
+.header {
     width: 100%;
-    height: 100%;
+    text-align: center;
+}
+.header image{
+    width: 160rpx;
+    height: 160rpx;
+    margin: 40rpx 0;
 }
 
-.status{
-    color: #2c83e8;
+.body {
+    width: 100%;
     text-align: center;
-    font-size: 40rpx;
-    margin: 30rpx auto;
+    border-bottom: 1px solid #ddd;
+}
+.body-item{
+    padding-bottom: 20rpx; 
+}
+.amount{
+    font-size: 56rpx;
+}
+.tip{
+    color: #aaa;
+    font-size: 24rpx;
 }
 
-.money{
-    text-align: center;
+
+.footer{
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 20rpx 0;
+}
+
+.footer button{
+    width: 92%;
+    margin: 0 auto;
 }

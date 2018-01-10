@@ -1,28 +1,35 @@
-<!-- 开通线路 -->
+<view class="item">
 
-<view>
-    <view class="open-line-header">
-        <icon type="search" class="icon" />
-        <input type="text" class="input" placeholder="请输入线路名称" onInput="searchLine" />
+   <!--搜索-->
+   <view class="line-search">
+      <view class="search-outer">
+        <input
+          class="search-input"
+          placeholder="搜索(输入线路名称)"
+          value="{{searchData}}"
+          onInput="handleSearch"
+        />
+        <text class="search-cancel" onTap="clearSearch">取消</text>
+      </view>
+   </view>
+   
+   <!--线路-->
+   <view class="line-list">
+       <view class="line-list-item" a:for="{{ searchData ? searchLineList: lineList }}" a:for-item="item">
+           <view class="name">{{ item.name }}</view>
+           <view class="station">
+               <text>{{ item.start }}</text>
+               <image src="https://xm-cdn.oss-cn-hangzhou.aliyuncs.com/img/traffic_card/arrowdir.png" mode="scaleToFill" />
+               <text>{{ item.end }}</text>
+           </view>
+       </view>
     </view>
- 
-    <view style="padding-top:90rpx;"></view>
-
-    <view class="null-img {{ isValue ? 'line-show' : 'line-hide' }}">
-        <image src="../../image/open_line_null.png" mode="aspectFit" />
-        <text>该线路暂未开通,敬请期待</text>
-    </view>
-
-
-    <!--全部线路--> 
-    <view class="line-list" a:for="{{ searchData === '' ? lineList : searchLineData }}" a:for-item="item">
-         <view class="line-list-header">{{ item.number }}</view>
-         <view class="line-list-footer">
-             <view class="line-list-footer-item">{{ item.start }}</view>
-             <image class="line-list-footer-un" src="../../image/arrowdir.png" mode="aspectFit" />
-             <view class="line-list-footer-item">{{ item.end }}</view>
-         <view>
-    </view>
-</view>   
     
-         
+    <!--null-->
+    <view class="null {{ isNull ? 'show' : 'hide' }}">
+        <image src="https://xm-cdn.oss-cn-hangzhou.aliyuncs.com/img/traffic_card/open_line_null.png" mode="scaleToFill" />
+        <view>{{ nullTip }}</view>
+    </view>
+
+
+</view>

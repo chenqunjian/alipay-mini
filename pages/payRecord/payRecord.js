@@ -7,22 +7,30 @@ Page({
     pageSize: 10,
     hasNextPage: true,
     isLoading: false, //正在请求接口
-    recordList:[]
+    recordList:[
+      
+    ],
+    loading: false, // 实现显示加载中
+    visible: false  //是否显示页面
   },
 
   onLoad() {
+    // console.log(this.data.recordList.length)
     this.requestList()
   },
   onReachBottom(){
     console.log("onReachBottom" + this.data.page)
-    if(this.isLoading){
+    if(this.data.isLoading){
       return
     }
     // this.setData({
     //   isLoading: true
     // })
     if (this.data.hasNextPage) {
-      my.showToast({content: '加载下一页...'})
+      this.setData({
+        loading: true
+      })
+      // my.showToast({content: '加载下一页...'})
       this.requestList();
     }
   },
@@ -33,12 +41,17 @@ Page({
       page
     }
     http(url, data, 'POST').then((res)=>{
+      this.setData({
+        visible: true
+      })
+
       if(res.responseCode != "000000"){
         return
       }
 
       let recordList = this.data.recordList
-      
+      let showEmpty = res.resList.length
+
       let resList = this.formatRecord(res.resList)
       if(page == 1){
         recordList = resList
@@ -58,7 +71,7 @@ Page({
         isLoading: false,
         page,
         recordList,
-        hasNextPage
+        hasNextPage,
       })
       console.log(this.data.hasNextPage)
       console.log(this.data.page)

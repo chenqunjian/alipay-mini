@@ -1,181 +1,61 @@
-
-@import "../../component/logo/logo.acss";
-
-page {
-  background-color: #fff;
+.card-info {
+    width: 100%;
+    margin: 0 auto;
+    background: url(https://xm-cdn.oss-cn-hangzhou.aliyuncs.com/img/traffic_card/openCard_bg.jpg) no-repeat;
+    background-size: 100% 100%;
+    box-sizing: border-box;
+    padding-top: 200rpx;
 }
 
-.index{
-  padding: 10rpx;
+.card-info-img{
+    width: 92%;
+    height: 420rpx;
+    margin: 0 auto;
 }
 
-.introduce{
-  padding: 20rpx;
-  font-size: 28rpx;
-  text-indent: 56rpx;
-}
-
-.register{
-  width: 80%;
-  margin: 0 auto 20rpx;
-}
-
-.agreement{
-  text-align: center;
-  margin-top: 10rpx;
-  color: #dcdcdc;
-}
-
-.agreement text{
-  color: #108ee9;
-}
-
-.slogan{
-  margin-top: 90rpx;
-  text-align: center;
-  font-size: 50rpx;
-}
-
-.slogan-content{
-  text-align: center;
-  color: #dcdcdc;
-  margin-top: 20rpx;
-}
-
-.footer{
-  /* text-align: center; */
-  color: #108ee9;
-  position: absolute;
-  bottom: 5%;
-  left: 30%;
-  display: flex;
-}
-
-.toast-show{
-  position: absolute;
-  top:35%;
-  left: 28%;
-}
-
-.open-card-mask{
-  position: absolute;
-  top:0%;
-  left: 0%;
+.card-img{
   width: 100%;
-  height: 100%;
-  z-index: 999;
-  background-color: rgba(89, 93, 105, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 420rpx;
 }
 
-.open-card{
- width: 80%;
-  
-
+.card-btn{
+    width: 82%;
+    margin: 0 auto;
+    padding-top: 80rpx;
 }
 
-.open-card image{
-  /* height: 100%; */
-  width: 100%;
-  height: 500rpx;
+.card-protocol{
+    text-align: center;
+    font-size: 26rpx;
+    padding-top: 20rpx;
 }
 
-.toast-footer{
-  margin: -20rpx auto 0;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 80rpx;
-  width: 100%;
-  font-size: 40rpx;
-  border-right: 1rpx solid #dcdcdc;
-  border-left: 1rpx solid #dcdcdc;
-  border-bottom: 1rpx solid #dcdcdc;
+.card-desc{
+    width: 100%;
+    text-align: center;
+    padding-top: 80rpx; 
+}
+.card-desc-header {
+    font-size: 32rpx;
 }
 
-.open-card-header{
-  width: 100%;
-  height: 500rpx;
-  background: url(../../image/openCard_bg.jpg) no-repeat;
-  background-size: 100% 100%;
-  position: relative; 
-}
-.open-card-header-img{
-  position: absolute;
-  width: 92%;
-  left: 50%;
-  height: 400rpx;
-  margin-left: -46%;
-  top: 200rpx;
+.card-desc-header .card-desc-header-un{
+    color: #c1c1c1;
+    margin: 0 10rpx;
 }
 
-.open-card-body{
-  width: 100%;
-  margin-top: 180rpx;
-}
-
-.open-card-body-btn{
-  width: 86%;
-  margin: 0 auto;
-}
-.open-card-body-btn > button{
-  height: 90rpx;
-  line-height: 90rpx;
-  text-align: center;
-  font-size: 36rpx;
-}
-
-.open-card-body-protocol{
-  width: 100%;
-  text-align: center;
-  font-size: 24rpx;
-  margin: 40rpx auto;
-}
-
-.open-card-body-protocol-blue{
-  color: #3ab5e6;
-  margin-left: 10rpx;
-}
-
-.open-card-body-desc{
-  widows: 100%;
-  text-align: center;
-}
-
-.open-card-body-desc .desc-item{
-  padding: 10rpx 0;
-}
-
-.open-card-body-desc .one{
-  color: #c1c1cc;
-}
-
-.desc-item-title{
-  font-weight: 700;
-  color: #333;
-  padding: 0 30rpx;
-  font-size: 36rpx;
-}
-.desc-item-content{
-  color: #a3a8ae;
-  font-size: 24rpx;
+.card-desc-footer{
+    padding-top: 20rpx;
+    color: #c1c1c1;
+    font-size: 26rpx;
 }
 
 .open-card-footer{
-  width: 100%;
-  text-align: center;
-  position: fixed;
-  z-index: 5;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0 0 20rpx 0;
-  color: #3ab5e6;
-  font-size: 24rpx;
+    position: fixed;
+    left: 0;
+    bottom: 10rpx;
+    font-size: 20rpx;
+    color: #c1c1c1;
+    text-align: center;
+    width: 100%;
 }

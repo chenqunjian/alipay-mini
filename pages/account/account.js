@@ -4,7 +4,8 @@ import {formatMoney} from '../../libs/utils'
 let app = getApp()
 Page({
   data: {
-    balance: 0
+    balance: 0,
+    visible: false  //是否显示页面
   },
   onLoad() {
     this.getBalance()
@@ -12,7 +13,10 @@ Page({
   },
   pay(){
     if(app.globalData.cardReturning){
-      my.showToast({content: '正在申请退款中'})
+      my.showToast({
+        content: '正在申请退款中',
+        duration: 1000
+      })
       return
     }
     my.navigateTo({
@@ -23,8 +27,15 @@ Page({
   
     http('/queryUserAmount').then((result)=>{
       console.log(result)
+      this.setData({
+        visible: true
+      })
       if(result.responseCode !== "000000"){
-          my.alert({content: result.responseDesc}) 
+          // my.alert({content: result.responseDesc}) 
+          my.showToast({
+            content: result.responseDesc,
+            duration: 1000
+          })
           return
       }
       let balance = formatMoney(result.amount)
