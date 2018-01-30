@@ -1,6 +1,8 @@
 export const serverConfig = {
-    gatewayServer: "http://changantong.i-xiaoma.cn:8080/mini-program-gateway/mini",
-    // gatewayServer: "http://chat.i-xiaoma.cn:8080/mini-program-gateway/mini",
+    // gatewayServer: "http://changantong.i-xiaoma.cn:8080/mini-program-gateway/mini",
+    //gatewayServer: "http://changantong.i-xiaoma.cn:18080/job/mini",
+    
+    gatewayServer: "http://chat.i-xiaoma.cn:8080/mini-program-gateway/mini",
 };
 
 //  export const getCardUrl = "https://memberprod.alipay.com/account/openform/activecard.htm?app_id=2017122601245171&template_id=20171227000000000719164000300116&__webview_options__=canPullDown%3dNO%26transparentTitle%3dauto"

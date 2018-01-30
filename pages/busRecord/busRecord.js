@@ -23,21 +23,23 @@ Page({
     if(this.isLoading){
       return
     }
-    this.setData({
-      isLoading: true,
-      loading: true
-    })
+
     if (this.data.hasNextPage) {
-      my.showToast({
-        content: '加载下一页...',
-        duration: 1000
+      this.setData({
+        isLoading: true,
+        loading: true
       })
+      // my.showToast({
+      //   content: '加载下一页...',
+      //   duration: 1000
+      // })
       this.requestList();
     }
   },
   requestList(){
     let page = this.data.page
     let url = "/queryUserConsumeRecordList"
+    // let url = "/queryUserChargeRecordList"
     let data = {
       page
     }
@@ -62,9 +64,11 @@ Page({
       }
       
       let hasNextPage = true
+      let loading = true
       if(res.page == page){
         //最后一页
         hasNextPage = false        
+        loading = false
       }
 
       page++
@@ -73,6 +77,7 @@ Page({
         page,
         recordList,
         hasNextPage,
+        loading
       })
 
       this.sortRecord()

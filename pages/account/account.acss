@@ -1,11 +1,12 @@
 page{
-    background: rgba(0, 0, 0, 0.1)
+    /* background: rgba(0, 0, 0, 0.1) */
+    background-color: #f6f5f9;
 }
 
 .balance-header {
     background: url(https://xm-cdn.oss-cn-hangzhou.aliyuncs.com/img/traffic_card/balance_header_bg.jpg) no-repeat;
     width: 100%;
-    height: 400rpx;
+    height: 360rpx;
     background-size: 100% 100%;
     box-sizing: border-box;
     display: flex;
@@ -15,15 +16,18 @@ page{
     width: 100%;
     height: 300rpx;
     box-sizing: border-box;
-    padding-left: 20rpx; 
+    padding-left: 30rpx; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 .info-item{
-    color: hsla(0, 0%, 100%, 0.7)
+    color: hsla(0, 0%, 100%, 0.7);
+    font-size: 28rpx;
+    margin-top: 80rpx;
 }
 .balance{
+    margin-top: 18rpx;
     font-size: 80rpx;
     font-weight: 500;
     color: #fff;
@@ -33,7 +37,7 @@ page{
     width: 100%;
     box-sizing: border-box;
     padding: 0 20rpx;
-    height: 80rpx;
+    height: 110rpx;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -44,6 +48,23 @@ page{
     width: 30rpx;
     height: 30rpx;
     background: url("data:image/svg+xml;charset=utf-8,<svg width='16' height='26' viewBox='0 0 16 26' xmlns='http://www.w3.org/2000/svg'><path d='M2 0L0 2l11.5 11L0 24l2 2 14-13z' fill='%23C7C7CC' fill-rule='evenodd'/></svg>") no-repeat;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.balance-footer-left{
+    display: flex;
+    align-items: center;
+    color: #2d2d2d;
+    font-size: 35rpx;
+}
+
+.pay{
+    width: 45rpx;
+    height: 45rpx;
+    margin-right: 20rpx;
+    background: url("/image/pay_icon.png") no-repeat;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 50% 50%;

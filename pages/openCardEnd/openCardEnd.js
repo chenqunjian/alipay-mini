@@ -27,8 +27,8 @@ Page({
     http(url, data, 'POST', showLoading).then((result)=>{ 
 
         // let userInfo = {}
-        // userInfo.customerNo = '20180109000000021307'
-        // userInfo.cardNo = '7100400000005071'
+        // userInfo.customerNo = '20180130000000252719'
+        // userInfo.cardNo = '7100500000000181'
         // saveUserInfo(userInfo)
 
         // my.redirectTo({

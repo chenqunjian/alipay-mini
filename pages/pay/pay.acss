@@ -5,7 +5,7 @@ page{
 
 .recharge-header{
     width: 92%;
-    height: 220rpx;
+    height: 204rpx;
     background: url(https://xm-cdn.oss-cn-hangzhou.aliyuncs.com/img/traffic_card/wh_recharge_header_bg.png) no-repeat;
     background-size: 100% 100%;
     margin: 0 auto;
@@ -22,6 +22,13 @@ page{
     overflow: hidden;
     color: #fff;
     padding-top: 30rpx;
+}
+
+.recharge-title{
+    width: 92%; 
+    margin: 50rpx auto 28rpx;
+    color: #333333;
+    font-size: 30rpx;
 }
 
 .recharge-list{
@@ -45,17 +52,19 @@ page{
     margin: 0 2%;
 }
 
-.recharge-list-item view {
+/* .recharge-list-item view {
     margin: 20rpx 0;
-}
+} */
 
 .recharge-list-item .label{
     color: #108ee9;
     font-size: 36rpx;
+    margin: 18rpx 0 5rpx;
 }
 .recharge-list-item .value{
     color: #82cbfe;
     font-size: 26rpx;
+    margin: 5rpx 0 18rpx;
 }
 
 .active {
@@ -75,10 +84,10 @@ page{
 
 .recharge-footer-item{
     color: #108ee9;
-    padding-bottom: 35rpx;
+    padding-bottom: 40rpx;
 }
 .recharge-footer-item text {
-    font-size: 26rpx;
+    font-size: 30rpx;
 }
 
 /*alert*/
@@ -97,14 +106,24 @@ page{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 90%;
+    width: 72%;
+    height: 60%;
     /* background: #459eff; */
     background: #fff;
-    color: #000000;
+    color: #888888;
     box-sizing: border-box;
     border-radius: 5rpx;
-    padding: 10rpx 25rpx;
+    padding: 10rpx 30rpx;
+    overflow-y:scroll;
 }
+
+.recharge-alert-title{
+    font-size: 36rpx;
+    text-align: center;
+    font-weight: 700;
+    margin: 30rpx 0;
+}
+
 .recharge-alert-info text{
     display: block;
     /* color: #fff; */
@@ -115,12 +134,12 @@ page{
 .recharge-alert-info view{
     background: transparent;
     /* color: #fff; */
-    width: 200rpx;
-    margin: 0 auto;
+    /* width: 200rpx; */
     text-align: center;
     /* border: 1px solid #ffffff; */
-    border: 1px solid #000000;
-    padding: 10rpx 0;
-    border-radius: 150rpx;
+    border-top: 1px solid #f2f2f2;
+    color: #108ee9;
+    font-size: 36rpx;
+    padding: 20rpx 0;
     margin-top: 20rpx;
 }

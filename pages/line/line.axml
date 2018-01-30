@@ -5,7 +5,7 @@
       <view class="search-outer">
         <input
           class="search-input"
-          placeholder="搜索(输入线路名称)"
+          placeholder="搜索"
           value="{{searchData}}"
           onInput="handleSearch"
         />

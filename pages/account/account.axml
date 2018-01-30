@@ -3,7 +3,7 @@
     <view class="balance-header">
         
         <view class="info">
-            <view class="info-item">余额账户</view>
+            <view class="info-item">账户余额</view>
             <view class="balance ">{{ balance }}元</view>
             <view class="info-item">{{ tip }}</view>
         </view>
@@ -11,7 +11,11 @@
     </view>
 
     <view class="balance-footer" onTap="pay">
-        <text>立即充值</text>
+        <!-- <image src="/image/pay_icon.png" mode="aspectFit" /> -->
+        <view class="balance-footer-left">
+            <view class="pay"></view>
+            <text>立即充值</text>
+        </view>
         <view class="arrow"></view>
     </view>
 

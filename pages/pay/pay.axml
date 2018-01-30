@@ -1,11 +1,11 @@
-<view class="item">
+<view class="item" onTap="pageCikck">
 
     <view class="recharge-header">
         <text style="padding: 0 10rpx;">卡号</text>
         <text>{{cardNo}}</text>
     </view>
 
-    <view style="width: 92%; margin: 30rpx auto;">请选择充值金额</view>
+    <view style="width: 92%; margin: 50rpx auto 28rpx;">请选择充值金额</view>
 
     <!--充值菜单-->
     <view class="recharge-list">
@@ -23,8 +23,8 @@
     <!--底部-->
     <view class="recharge-footer">
         <view class="recharge-footer-item">
-            <text onTap="toggleProtocol">充值协议</text>
-            <text style="margin: 0 20rpx; color: #ddd;">|</text>
+            <text catchTap="toggleProtocol">充值协议</text>
+            <text style="margin: 0 30rpx; color: #ddd;">|</text>
             <text onTap="linkRechargeLog">充值记录</text>   
         </view>
         <!--<view class="recharge-footer-item" onTap="toggleProtocol">
@@ -34,6 +34,7 @@
     <!--协议弹层-->
     <view class="recharge-alert {{ protocolVisible ? 'show' : 'hide' }}">
         <view class="recharge-alert-info">
+            <text class="recharge-alert-title">充值协议</text>
             <text a:for="{{ rechargeProtocol }}">{{ item }}</text>
             <view onTap="toggleProtocol">我知道了</view>
         </view>

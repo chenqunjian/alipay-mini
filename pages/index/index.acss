@@ -60,7 +60,8 @@ page{
     left: 50%;
     width: 92%;
     margin-left: -46%;
-    bottom: 20rpx;
+    padding-bottom: 20rpx;
+    bottom: 0;
     border-bottom: 1px solid #e0e0e0;
 }
 
@@ -81,7 +82,7 @@ page{
 .menu{
     display: flex;
     flex-wrap: wrap;
-    margin: 10rpx auto 0;
+    margin: 40rpx auto 0;
     /* padding: 30rpx 0; */
     padding-top: 95rpx;
     width: 92%;
@@ -111,7 +112,7 @@ page{
     left: 0;
     width: 100%;
     bottom: 0;
-    padding: 20rpx 0;
+    padding: 30rpx 0;
     box-sizing: border-box;
     border-top: 1px solid #e0e0e0;
 }
@@ -119,6 +120,10 @@ page{
 .card-detail-footer-btn{
     width: 92%;
     margin: 0 auto;
+}
+
+.card-detail-footer-btn button{
+    height: 84rpx;
 }
 
 /* success */

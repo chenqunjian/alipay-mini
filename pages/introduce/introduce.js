@@ -7,7 +7,9 @@ Page({
     data: {
         cardName: null,
         cardImage: null,
-        cardDescList: null
+        cardDescList: null,
+        checked: false,
+        showTips: false,
     },
     onLoad(){
         let userInfo = getUserInfo()
@@ -32,8 +34,33 @@ Page({
             url:'/pages/agreement/agreement'
         });
     },
+    checkedAgreement(){
+        // console.log('info')
+        // console.log(this.data.checked)
+        let showTips = true
+        if(!this.data.checked){
+            showTips = false            
+        }
+
+        this.setData({
+            checked: !this.data.checked,
+            showTips
+        }) 
+    },
     register(){
         //getCardComponet
+        console.log({checked:this.data.checked})
+        if(!this.data.checked){
+            this.setData({
+                showTips: true
+            })
+            return
+        }else{
+            this.setData({
+                showTips: false
+            })
+        }
+
 
         http('/getCardComponet').then((result)=>{
             if(result.responseCode !== "000000"){

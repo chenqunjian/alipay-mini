@@ -50,20 +50,22 @@ Page({
       }
 
       let recordList = this.data.recordList
-      let showEmpty = res.resList.length
 
       let resList = this.formatRecord(res.resList)
+      console.log("resList："+ JSON.stringify(res.resList))
       if(page == 1){
         recordList = resList
       }
       else {
         recordList.push(...resList);
       }
-      
+      console.log("recordList"+ JSON.stringify(recordList))
       let hasNextPage = true
+      let loading = true
       if(res.page == page){
         //最后一页
-        hasNextPage = false        
+        hasNextPage = false  
+        loading = false      
       }
 
       page++
@@ -72,6 +74,7 @@ Page({
         page,
         recordList,
         hasNextPage,
+        loading
       })
       console.log(this.data.hasNextPage)
       console.log(this.data.page)

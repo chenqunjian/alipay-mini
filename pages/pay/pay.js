@@ -26,8 +26,8 @@ Page({
       this.setData({
           rechargeIndex: index
       })
-      // amount *= 100
-      amount /= 10
+      amount *= 100
+      // amount /= 10
 
       let url = "/chargeApply"
       let data = {
@@ -98,12 +98,19 @@ Page({
     },
     toggleProtocol () {
         this.setData({
-            protocolVisible: !this.data.protocolVisible
+          protocolVisible: !this.data.protocolVisible
         })
+        console.log(this.data.protocolVisible)  
     },
     linkRechargeLog () {
         my.navigateTo({
           url: '/pages/payRecord/payRecord'
         });
+    },
+    pageCikck(){
+      this.setData({
+        protocolVisible: false
+      })
+      console.log(this.data.protocolVisible)
     }
 });

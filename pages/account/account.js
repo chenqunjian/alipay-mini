@@ -14,7 +14,7 @@ Page({
   pay(){
     if(app.globalData.cardReturning){
       my.showToast({
-        content: '正在申请退款中',
+        content: '退卡申请审核中，无法使用该功能',
         duration: 1000
       })
       return

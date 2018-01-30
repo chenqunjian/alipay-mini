@@ -11,10 +11,25 @@
     </view>
 
     <view class="card-protocol">
-        领取卡片并且同意
-        <navigator url="/pages/agreement/agreement" redirect style="display: inline-block;">
-             <text style="color: #3ab5e6; padding-left: 10rpx;">协议</text>
-        </navigator>
+        <view class="card-protocol-tips" a:if="{{showTips}}">
+            请先阅读并同意协议
+        </view>
+        <view class="card-protocol-text">
+            <view class="card-protocol-button" onTap="checkedAgreement">
+                <view a:if="{{checked}}">
+                    <image  src="/image/checked.png" mode="aspectFit" />
+                </view>
+                <view a:else>
+                    <image  src="/image/yuan.png" mode="aspectFit" />
+                </view>
+            </view>
+            <view>
+                领取卡片并且同意
+                <navigator url="/pages/agreement/agreement" redirect style="display: inline-block;">
+                    <text style="color: #3ab5e6; padding-left: 10rpx;">协议</text>
+                </navigator>
+            </view> 
+        </view>
     </view>
 
     <view class="card-desc" a:for="{{ cardDescList }}" a:for-item="item">

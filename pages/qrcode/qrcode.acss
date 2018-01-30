@@ -86,13 +86,13 @@ page{
 }
 
 .qrcode-refresh{
-    margin: 120rpx auto;
-    width: 30%;
+    margin: 120rpx auto 80rpx;
+    width: 20%;
 }
 
 .qrcode-refresh image{
     width: 100%;
-    height: 200rpx;
+    height: 150rpx;
    
 }
 

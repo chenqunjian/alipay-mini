@@ -2,22 +2,21 @@
   "pages": [
 
     "pages/index/index",
-    "pages/line/line",
     "pages/qrcode/qrcode",
     "pages/introduce/introduce",
     "pages/openCardEnd/openCardEnd",
     "pages/help/help",
     "pages/agreement/agreement",
     "pages/register/register",
-
+    "pages/account/account",
     "pages/payResult/payResult",
     "pages/pay/pay",
     "pages/busRecord/busRecord",
     "pages/payRecord/payRecord",
     "pages/payRecordDetail/payRecordDetail",
+    "pages/line/line",
 
 
-    "pages/account/account",
     "pages/errorPage/errorPage",
 
     "pages/returnCard/returnCard"
