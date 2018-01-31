@@ -58,7 +58,8 @@ Page({
         }
         //设置屏幕长亮
         this.setKeepScreen(true)
-
+        //调整屏幕亮度
+        this.setScreenBrightness(0.7)
     },
     onReady() {
         if (my.canIUse('onUserCaptureScreen')) {
@@ -79,7 +80,7 @@ Page({
         //关闭屏幕长亮
         this.setKeepScreen(false)
         //设置屏幕亮度
-        this.setScreenBrightness(0.6)
+        this.setScreenBrightness(0.5)
         //取消监听截屏事件
         my.offUserCaptureScreen()
         my.hideToast()
@@ -91,7 +92,7 @@ Page({
         //关闭屏幕长亮
         this.setKeepScreen(false)
         //设置屏幕亮度
-        this.setScreenBrightness(0.6)
+        this.setScreenBrightness(0.5)
         //取消监听截屏事件
         my.offUserCaptureScreen()
         my.hideToast()
@@ -191,9 +192,9 @@ Page({
             console.log(reFreshTimeLimit)
             // console.log(str)
             // qrcodeStr = "data:image/jpg;base64," + qrcodeStr
-
-            let qrcodeStr = QR.createQrCodeImg(result.qrCode)
-
+            // console.time('qrcode')
+            let qrcodeStr = QR.createQrCodeImg(result.qrCode, {errorCorrectLevel: "L", typeNumber: 2})
+            // console.timeEnd('qrcode')
             this.setData({
                 qrcodeStr,
                 reFresh: false,
