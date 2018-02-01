@@ -11,6 +11,7 @@ Page({
         reFreshTime: 0,
         reFreshTimeLimit: 0,   //刷新间隔时间 秒
         qrcodeExpired: false,
+        brightness: 0.6,        //屏幕亮度
         errorInfo: {
             errorShow: false,
             errorMsg: '',
@@ -35,22 +36,13 @@ Page({
         if (my.canIUse('getScreenBrightness')) {
             my.getScreenBrightness({
                 success: (res) => {
-                    // my.alert({
-                    //     title: '获取屏幕亮度成功',
-                    //     content: JSON.stringify(res)
-                    // })
+                    console.log('getScreenBrightness:'+ JSON.stringify(res))
+                    if(res.success){
+                        this.data.brightness = res.brightness
+                    }
                 },
                 fail: (res) => {
-                    // my.alert({
-                    //     title: '获取屏幕亮度错误',
-                    //     content: JSON.stringify(res)
-                    // })
-                },
-                complete: (res) => {
-                    // my.alert({
-                    //     title: '获取屏幕亮度完成',
-                    //     content: JSON.stringify(res)
-                    // })
+                    this.data.brightness = 0.6
                 }
             });
         } else {
@@ -73,6 +65,7 @@ Page({
         }
     },
     onUnload() {
+        console.log('on unload')
         // Do something when page close.
         // this.setData({isPageShowing: false})
         this.data.isPageShowing = false;
@@ -80,25 +73,27 @@ Page({
         //关闭屏幕长亮
         this.setKeepScreen(false)
         //设置屏幕亮度
-        this.setScreenBrightness(0.5)
+        this.setScreenBrightness(this.data.brightness)
         //取消监听截屏事件
         my.offUserCaptureScreen()
         my.hideToast()
     },
 
     onHide() {
+        console.log('on hide')
         this.data.isPageShowing = false;
         // this.setData({isPageShowing: false})
         //关闭屏幕长亮
         this.setKeepScreen(false)
         //设置屏幕亮度
-        this.setScreenBrightness(0.5)
+        this.setScreenBrightness(this.data.brightness)
         //取消监听截屏事件
         my.offUserCaptureScreen()
         my.hideToast()
     },
 
     setScreenBrightness(brightness = 0.7) {
+        console.log('set Brightness: '+ brightness)
         if (my.canIUse('setScreenBrightness')) {
             my.setScreenBrightness({
                 brightness: 0.7,
@@ -162,19 +157,25 @@ Page({
                 })
                 return
             }
-            else if (result.responseCode == "100000") {
-                // my.showToast({
-                //   content: '卡号为空', // 文字内容
-                // })
-                // setTimeout(() => {
-                //     my.redirectTo({
-                //         url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
-                //     })
-                // }, 1000);
-                // my.redirectTo({
-                //     url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
-                // })
-            }
+            // else if (result.responseCode == "100000") {
+            //     // this.setData({
+            //     //     errorInfo: {
+            //     //         errorShow: true,
+            //     //         errorMsg: result.responseDesc,
+            //     //         button: '返回',
+            //     //         url: '/pages/index/index'
+            //     //     }
+            //     // })
+            //     // setTimeout(() => {
+            //     //     my.redirectTo({
+            //     //         url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
+            //     //     })
+            //     // }, 1000);
+            //     // my.redirectTo({
+            //     //     url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
+            //     // })
+            //     return
+            // }
             else if (result.responseCode !== "000000") {
                 // my.alert({content: result.responseDesc})
                 this.setData({
@@ -189,7 +190,7 @@ Page({
 
             // let qrcodeStr = result.qrCode;
             let reFreshTimeLimit = result.timeout - 5 || 10
-            console.log(reFreshTimeLimit)
+            console.log({reFreshTimeLimit})
             // console.log(str)
             // qrcodeStr = "data:image/jpg;base64," + qrcodeStr
             // console.time('qrcode')
