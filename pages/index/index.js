@@ -10,6 +10,10 @@ Page({
       buttonText: '立即使用',
       disabledQrcode: false
     },
+    userInfo: {
+      customerNo: '',
+      cardNo: '',
+    },
     openCardSuccess: false,
     cardImage: null,
     menuList: null,
@@ -24,23 +28,23 @@ Page({
         delay: 1000,
       })
     }
-    let userInfo = getUserInfo()
-    console.log(userInfo)
-    // my.alert({content: JSON.stringify(userInfo)});
-    if(userInfo == undefined || userInfo == null || userInfo == '' || userInfo.customerNo == '' || userInfo.customerNo == undefined || userInfo.customerNo == null){
-      my.redirectTo({
-        url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
-      })
-      return 
-    }
+    this.data.userInfo = getUserInfo()
+    console.log(this.data.userInfo)
+    // if(userInfo == undefined || userInfo == null || userInfo == '' || userInfo.customerNo == '' || userInfo.customerNo == undefined || userInfo.customerNo == null){
+    //   my.redirectTo({
+    //     url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
+    //   })
+    //   return 
+    // }
+    this.getCardStatus()
     this.setData({
-      cardNo: userInfo.cardNo,
+      cardNo: this.data.userInfo.cardNo,
       // openCardSuccess,
       cardImage: globalData.cardImage,
       menuList: globalData.menuList
     })
 
-    this.getCardStatus()
+
   },
   onUnload(){
     this.setData({
@@ -63,7 +67,35 @@ Page({
    *  400000  参数错误
    */
   getCardStatus(){
-    http('/getBizTkCardStatus').then((result)=>{
+    let userInfo = this.data.userInfo
+    let cacheIsExist
+    if(userInfo && userInfo.customerNo && userInfo.cardNo){
+      let params = {
+        cacheIsExist: true,
+      }
+      this.getBizTkCardStatus(params)
+    }else{
+      //缓存为空，根据authCode请求
+      my.getAuthCode({
+        scopes: 'auth_base',
+        success: (res) => {
+          let params = {
+            cacheIsExist: false,
+            authCode: res.authCode,
+          }
+          this.getBizTkCardStatus(params)
+        },
+        fail: (res)=>{
+          my.redirectTo({
+            url: '/pages/introduce/introduce', // 需要跳转的应用内非 tabBar 的页面的路径，路径后可以带参数。参数与路径之间使用
+          })
+        }
+      });
+    }
+  
+  },
+  getBizTkCardStatus(params){
+    http('/getBizTkCardStatus', params).then((result)=>{
       console.log(JSON.stringify(result))
       if(result.responseCode == "100000" || result.responseCode == "300000"){
         //卡信息不存在或卡注销已退款
@@ -92,6 +124,11 @@ Page({
       }else if(result.responseCode == "000000"){
           //清除全局变量
           globalData.cardReturning = false
+          
+          this.data.userInfo.customerNo = result.customerNo
+          this.data.userInfo.cardNo = result.cardNo
+          
+          saveUserInfo(this.data.userInfo)
       }
     })
   },
